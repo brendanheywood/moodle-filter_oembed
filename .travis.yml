@@ -27,7 +27,7 @@ before_install:
   - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci dev-poet
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
 
-before_script: phpenv config-add travisphpconfig.ini
+before_script: phpenv config-add $TRAVIS_BUILD_DIR/travisphpconfig.ini
 
 install:
   - moodle-plugin-ci install
