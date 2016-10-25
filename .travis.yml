@@ -31,13 +31,13 @@ before_install:
 
 
   - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-  - mkdir /home/travis/virtualenv/chromium-browser
-  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/chromium-browser/
+  - mkdir $HOME/chromium-browser
+  - unzip chromedriver_linux64.zip -d $HOME/chromium-browser/
 
 install:
   - moodle-plugin-ci install
   - moodle-plugin-ci add-config -- '$CFG->behat_config = ["default" => ["extensions" => ["Behat\MinkExtension\Extension" => ["selenium2" => ["browser" => "chrome", "wd_host" => "http://localhost:4445/wd/hub"]]]]];'
-  - xvfb-run -a --server-args="-screen 0 1024x768x24" java -jar ./moodle/selenium.jar -port 4445 -Dwebdriver.chrome.driver=/home/travis/virtualenv/chromium-browser/chromedriver > /dev/null 2> /dev/null &
+  - xvfb-run -a --server-args="-screen 0 1024x768x24" java -jar ./moodle/selenium.jar -port 4445 -Dwebdriver.chrome.driver=$HOME/chromium-browser/chromedriver > /dev/null 2> /dev/null &
 
 script:
   - moodle-plugin-ci phplint
