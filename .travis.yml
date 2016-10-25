@@ -36,7 +36,7 @@ before_install:
 
 install:
   - moodle-plugin-ci install
-  - moodle-plugin-ci add-config -- '$CFG->behat_config = ["default" => ["extensions" => ["Behat\MinkExtension\Extension" => ["selenium2" => ["browser" => "chrome", "wd_host" => "http://localhost:4445/wd/hub"]]]]];'
+  - moodle-plugin-ci add-config -- '$CFG->behat_config = ["default" => ["extensions" => ["Behat\\MinkExtension\\Extension" => ["selenium2" => ["browser" => "chrome", "wd_host" => "http://localhost:4445/wd/hub"]]]]];'
   - php ./moodle/admin/tool/behat/cli/util.php --enable
   - xvfb-run -a --server-args="-screen 0 1024x768x24" java -jar ./moodle/selenium.jar -port 4445 -Dwebdriver.chrome.driver=$HOME/chromium-browser/chromedriver > /dev/null 2> /dev/null &
 
