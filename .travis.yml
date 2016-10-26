@@ -33,12 +33,13 @@ before_install:
   - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
   - mkdir $HOME/chromium-browser
   - unzip chromedriver_linux64.zip -d $HOME/chromium-browser/
+  - chmod 755 $HOME/chromium-browser/chromedriver
 
 install:
   - moodle-plugin-ci install
-  - moodle-plugin-ci add-config -- '$CFG->behat_config = ["default" => ["extensions" => ["Behat\\MinkExtension\\Extension" => ["selenium2" => ["browser" => "chrome", "wd_host" => "http://localhost:4445/wd/hub"]]]]];'
+  - moodle-plugin-ci add-config -- '$CFG->behat_config = ["default" => ["extensions" => ["Behat\\MinkExtension\\Extension" => ["selenium2" => ["browser" => "chrome", "wd_host" => "http://localhost:9515"]]]]];'
   - php ./moodle/admin/tool/behat/cli/util.php --enable
-  - xvfb-run -a --server-args="-screen 0 1024x768x24" java -jar ./moodle/selenium.jar -port 4445 -Dwebdriver.chrome.driver=$HOME/chromium-browser/chromedriver > /dev/null 2> /dev/null &
+  - xvfb-run -a --server-args="-screen 0 1024x768x24" $HOME/chromium-browser/chromedriver > /dev/null 2> /dev/null &
 
 script:
   - moodle-plugin-ci phplint
