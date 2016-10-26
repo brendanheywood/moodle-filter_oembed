@@ -29,7 +29,7 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sudo apt-get update
-  - sudo apt-get install google-chrome-stable
+  - sudo apt-get install chromium-browser
   - chromium-browser --version
   - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
   - mkdir $HOME/chromium-browser
