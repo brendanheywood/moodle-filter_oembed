@@ -39,7 +39,7 @@ install:
   - moodle-plugin-ci install
   - moodle-plugin-ci add-config -- '$CFG->behat_config = ["default" => ["extensions" => ["Behat\\MinkExtension\\Extension" => ["selenium2" => ["browser" => "chrome", "wd_host" => "http://localhost:9515"]]]]];'
   - php ./moodle/admin/tool/behat/cli/util.php --enable
-  - xvfb-run -a --server-args="-screen 0 1024x768x24" $HOME/chromium-browser/chromedriver > /dev/null 2> /dev/null &
+  - nohup $HOME/chromium-browser/chromedriver &
 
 script:
   - moodle-plugin-ci phplint
