@@ -25,22 +25,9 @@ before_install:
   - composer selfupdate
   - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci dev-poet
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
-  - export CHROME_BIN=/usr/bin/chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sudo apt-get update
-  - sudo apt-get install chromium-browser
-  - chromium-browser --version
-  - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-  - mkdir $HOME/chromium-browser
-  - unzip chromedriver_linux64.zip -d $HOME/chromium-browser/
-  - chmod 755 $HOME/chromium-browser/chromedriver
 
 install:
   - moodle-plugin-ci install
-  - moodle-plugin-ci add-config -- '$CFG->behat_config = ["default" => ["extensions" => ["Behat\\MinkExtension\\Extension" => ["selenium2" => ["browser" => "chrome", "wd_host" => "http://localhost:9515"]]]]];'
-  - php ./moodle/admin/tool/behat/cli/util.php --enable
-  - xvfb-run -a --server-args="-screen 0 1024x768x24" $HOME/chromium-browser/chromedriver > /dev/null 2> /dev/null &
 
 script:
   - moodle-plugin-ci phplint
