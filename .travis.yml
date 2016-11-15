@@ -27,6 +27,8 @@ before_install:
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
 
 install:
+  - moodle-plugin-ci add-config '$CFG->curlsecurityallowedport = "";'
+  - moodle-plugin-ci add-config '$CFG->curlsecurityblockedhosts = "";'
   - moodle-plugin-ci install
 
 script:
