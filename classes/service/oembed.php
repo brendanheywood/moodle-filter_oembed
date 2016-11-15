@@ -275,12 +275,34 @@ class oembed {
      * @return space array
      */
     protected static function download_providers() {
+        global $CFG;
+
         // Wondering if there is any reason to make this configurable?
         $www = 'http://oembed.com/providers.json';
 
         $timeout = 15;
 
+        // Ensure that the configuration doesn't prevent us from downloading.
+        // This is a hack caused by new settings not always existing on a new install in 3.2.
+        $hackedport = false;
+        if (!isset($CFG->curlsecurityallowedport)) {
+            $CFG->curlsecurityallowedport =  '';
+            $hackedport = true;
+        }
+        $hackedhosts = false;
+        if (!isset($CFG->curlsecurityblockedhosts)) {
+            $CFG->curlsecurityblockedhosts = '';
+            $hackedhosts = true;
+        }
+
         $ret = download_file_content($www, null, null, true, $timeout, 20, false, null, false);
+
+        if ($hackedport) {
+            unset($CFG->curlsecurityallowedport);
+        }
+        if ($hackedhosts) {
+            unset($CFG->curlsecurityblockedhosts);
+        }
 
         if ($ret->status == '200') {
             $ret = $ret->results;
