@@ -286,7 +286,7 @@ class oembed {
         // This is a hack caused by new settings not always existing on a new install in 3.2.
         $hackedport = false;
         if (!isset($CFG->curlsecurityallowedport)) {
-            $CFG->curlsecurityallowedport =  '';
+            $CFG->curlsecurityallowedport = '';
             $hackedport = true;
         }
         $hackedhosts = false;
