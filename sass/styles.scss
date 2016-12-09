@@ -34,9 +34,10 @@
     background-image: url([[pix:filter_oembed|play]]);
     background-repeat: no-repeat;
     position: absolute;
-    top: calc(50% - 15%/2);
-    left: calc(50% - 15%/2);
     width: 15%;
+    // Center play button 50% - width / 2;
+    top: 42.5%;
+    left: 42.5%;
     padding-top: 15%;
     margin: 0;
     background-position: 0;
