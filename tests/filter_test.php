@@ -91,6 +91,22 @@ class filter_oembed_testcase extends advanced_testcase {
      */
     public function test_filter() {
         $this->resetAfterTest(true);
+
+        $curl = new curl();
+        try {
+            $out = $curl->get('https://www.youtube.com');
+        } catch (Exception $e) {
+            $out = '';
+        }
+        $cancontactyoutube = stripos(trim($out), '<!DOCTYPE html') !== false;
+
+        // Make sure that we have access to the internet.
+        if (!$cancontactyoutube) {
+            $this->markTestSkipped(
+                'Unable to reach youtube'
+            );
+        }
+
         set_config('lazyload', 0, 'filter_oembed');
 
         $soundcloudlink = '<p><a href="https://soundcloud.com/forss/flickermood">soundcloud</a></p>';

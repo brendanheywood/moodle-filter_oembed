@@ -26,6 +26,7 @@
 
 $string['filtername'] = 'Oembed Filter';
 $string['atag'] = 'Filter on &lt; a &gt; tags';
+$string['cachedef_embeddata'] = 'Cache provider embed data for speed.';
 $string['cachelifespan_disabled'] = 'Cache lifespan disabled';
 $string['cachelifespan'] = 'Cache lifespan';
 $string['cachelifespan_desc'] = 'The duration of time before the providers list should be refreshed.';
