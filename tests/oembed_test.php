@@ -97,10 +97,10 @@ class filter_oembed_service_testcase extends advanced_testcase {
         $this->setAdminUser();
         $oembed = testable_oembed::get_instance();
         $text = $oembed->html_output('https://www.youtube.com/watch?v=Dsws8T9_cEE');
-        $expectedtext = '<div class="oembed-content"><iframe width="480" height="270"' .
+        $expectedtext = '<div class="oembed-content oembed-responsive"><iframe width="480" height="270"' .
             ' src="https://www.youtube.com/embed/Dsws8T9_cEE?feature=oembed&v=Dsws8T9_cEE"' .
-            ' frameborder="0" allowfullscreen></iframe></div>';
-        $this->assertEquals($expectedtext, $text);
+            ' frameborder="0" allowfullscreen></iframe>';
+        $this->assertContains($expectedtext, $text);
     }
 
     /**
@@ -113,8 +113,8 @@ class filter_oembed_service_testcase extends advanced_testcase {
         $this->setAdminUser();
         $oembed = testable_oembed::get_instance();
         $text = $oembed->html_output('https://www.youtube.com/watch?v=Dsws8T9_cEE');
-        $this->assertContains('<div class="oembed-card-container">', $text);
-        $this->assertRegExp('/<div class="oembed-card" style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
+        $this->assertContains('<div class="oembed-card-container oembed-responsive">', $text);
+        $this->assertRegExp('/<div class="oembed-card oembed-processed" style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
             'data-aspect-ratio = "(?:.*)"(?:.*)>/is', $text);
         $this->assertRegExp('/<div class="oembed-card-title">(?:.*)<\/div>/', $text);
         $this->assertContains('<button class="btn btn-link oembed-card-play" aria-label="Play"></button>', $text);

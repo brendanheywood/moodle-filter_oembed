@@ -186,7 +186,23 @@ class oembed {
             $embed = str_replace('?feature=oembed', '?feature=oembed'.$paramstr, $embed);
         }
 
-        $output = '<div class="oembed-content">' . $embed . '</div>'; // Wrapper for responsive processing.
+        $aspectratio = 0;
+
+        if (!empty($jsonarr['width']) && !empty($jsonarr['height'])) {
+            $width = $jsonarr['width'];
+            $height = $jsonarr['height'];
+            $aspectratio = $this->get_aspect_ratio($width, $height);
+        }
+        if ($aspectratio > 0) {
+            $padding = $aspectratio * 100;
+            $paddiv = '<div class="oembed-responsive-pad" style="padding-top:' . $padding . '%"></div>';
+            // Wrapper for responsive processing.
+            $output = '<div class="oembed-content oembed-responsive">' . $embed . $paddiv . '</div>';
+        } else {
+            // Wrapper for responsive processing.
+            $output = '<div class="oembed-content">' . $embed . '</div>';
+        }
+
         return $output;
     }
 
@@ -222,6 +238,9 @@ class oembed {
                         $aspectratio = 0.5625;
                     }
                 }
+            }
+            if ($aspectratio !== 0) {
+                $jsonarr['aspectratio'] = $aspectratio * 100;
             }
 
             // This html is intentionally hardcoded and excluded from the mustache template as javascript relies on it.

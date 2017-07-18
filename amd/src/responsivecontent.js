@@ -35,7 +35,9 @@ define(['jquery'], function($) {
          */
         this.apply = function(nodes) {
             if (!nodes){
-                nodes = $('.oembed-content > *:not(video):first-child, .oembed-card');
+                var selectortoprocess = '.oembed-content:not(.oembed-responsive) > *:not(video):first-child,';
+                selectortoprocess += ' .oembed-card:not(.oembed-processed)';
+                nodes = $(selectortoprocess);
             }
             // Apply aspect ratio to height for all nodes or single node.
             $(nodes).each(function() {
