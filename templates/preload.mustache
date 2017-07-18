@@ -19,9 +19,10 @@
 @copyright Stuart Lamour / Guy Thomas 2016
 @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 }}
-<div class="oembed-card-container">
-    <div class="oembed-card" style="background-image:url({{thumbnail_url}});" data-embed="{{embedhtml}}" {{#jshtml}}{{{jshtml}}}{{/jshtml}} >
+<div class="oembed-card-container{{#aspectratio}} oembed-responsive{{/aspectratio}}">
+    <div class="oembed-card{{#aspectratio}} oembed-processed{{/aspectratio}}" style="background-image:url({{thumbnail_url}});" data-embed="{{embedhtml}}" {{#jshtml}}{{{jshtml}}}{{/jshtml}} >
         <div class="oembed-card-title">{{title}}</div>
         <button class="btn btn-link oembed-card-play" aria-label="{{#str}}playoembed, filter_oembed{{/str}}"></button>
     </div>
+    {{#aspectratio}}<div class="oembed-responsive-pad" style="padding-top:{{aspectratio}}%"></div>{{/aspectratio}}
 </div>

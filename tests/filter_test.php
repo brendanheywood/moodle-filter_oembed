@@ -98,6 +98,7 @@ class filter_oembed_testcase extends advanced_testcase {
         } catch (Exception $e) {
             $out = '';
         }
+
         $cancontactyoutube = stripos(trim($out), '<!DOCTYPE html') !== false;
 
         // Make sure that we have access to the internet.
