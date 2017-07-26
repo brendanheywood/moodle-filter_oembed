@@ -10,9 +10,12 @@ php:
  - 5.6
  - 7.0
 
+addons:
+  postgresql: 9.3
+
 env:
  global:
-  - MOODLE_BRANCH=master
+  - MOODLE_BRANCH=MOODLE_32_STABLE
   - IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
 
  matrix:
