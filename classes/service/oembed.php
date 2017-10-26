@@ -25,8 +25,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace filter_oembed\service;
-use filter_oembed\db\providerrow;
-use filter_oembed\provider\provider;
+use filter_oembed\db\providerrow,
+    filter_oembed\provider\provider,
+    Exception;
 
 defined('MOODLE_INTERNAL') || die();
 
