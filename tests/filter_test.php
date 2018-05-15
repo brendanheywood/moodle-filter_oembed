@@ -136,7 +136,7 @@ class filter_oembed_testcase extends advanced_testcase {
         $officemixoutput = '/.*<iframe .*src="https:\/\/mix\.office\.com\/embed\/50ujrxsjvp9c".*/';
         $this->assertRegExp($officemixoutput, $filteroutput, 'Office mix filter fails');
 
-        $vimeooutput = '/.*<iframe .*src="https:\/\/player\.vimeo\.com\/video\/115538038".*/';
+        $vimeooutput = '/.*<iframe .*src="https:\/\/player\.vimeo\.com\/video\/115538038\?.*".*/';
         $this->assertRegExp($vimeooutput, $filteroutput, 'Vimeo filter fails');
 
         $tedoutput = '/.*<iframe .*src="https:\/\/embed\.ted\.com\/talks\/aj_jacobs_how_healthy_living_nearly_killed_me".*/';

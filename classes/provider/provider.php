@@ -211,16 +211,18 @@ class provider {
         foreach ($schemes as $scheme) {
             // An "http[s]:" may not be present, so flag it as a non-capturing subpattern with "(?:".
             $url1 = preg_split('/((?:https?:)?\/\/)/', $scheme);
-            $url2 = preg_split('/\//', $url1[1]);
-            $regexarr = [];
-            foreach ($url2 as $url) {
-                $find = ['.', '*'];
-                $replace = ['\.', '.*?'];
-                $url = str_replace($find, $replace, $url);
-                $regexarr[] = '('.$url.')';
-            }
+            if (!empty($url1[1])) {
+                $url2 = preg_split('/\//', $url1[1]);
+                $regexarr = [];
+                foreach ($url2 as $url) {
+                    $find = ['.', '*'];
+                    $replace = ['\.', '.*?'];
+                    $url = str_replace($find, $replace, $url);
+                    $regexarr[] = '(' . $url . ')';
+                }
 
-            $regex[] = '/(https?:\/\/)'.implode('\/', $regexarr).'/';
+                $regex[] = '/(https?:\/\/)' . implode('\/', $regexarr) . '/';
+            }
         }
         return $regex;
     }

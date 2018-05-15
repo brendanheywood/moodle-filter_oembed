@@ -19,6 +19,16 @@
 @copyright Stuart Lamour / Guy Thomas 2016
 @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 }}
+{{!
+    @template filter_oembed/preload
+    Example context (json):
+    {
+        "aspectratio": "1",
+        "embedhtml": "<div>embed html</div>",
+        "jshtml": "data-aspect-ratio=10",
+        "title": "Card title"
+    }
+}}
 <div class="oembed-card-container{{#aspectratio}} oembed-responsive{{/aspectratio}}">
     <div class="oembed-card{{#aspectratio}} oembed-processed{{/aspectratio}}" style="background-image:url({{thumbnail_url}});" data-embed="{{embedhtml}}" {{#jshtml}}{{{jshtml}}}{{/jshtml}} >
         <div class="oembed-card-title">{{title}}</div>
