@@ -63,3 +63,4 @@ $string['source'] = 'Provider source';
 $string['targettag'] = 'Target tag';
 $string['targettag_desc'] = 'What tag type should be filtered - anchors or divs with the oembed class.';
 $string['updateproviders'] = 'Update Oembed provider information.';
+$string['privacy:metadata'] = 'Oembed filter does not store any personal data.';
