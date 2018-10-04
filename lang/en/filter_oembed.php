@@ -37,6 +37,7 @@ $string['deleteprovidertitle'] = 'Delete provider';
 $string['deleteproviderconfirm'] = 'Are you sure you want to delete provider "{$a}"?';
 $string['divtag'] = 'Filter on &lt; div &gt; tags';
 $string['downloadproviders'] = 'Downloaded providers';
+$string['cachedef_embeddata'] = 'Oembed Cache';
 $string['enabled'] = 'Enabled';
 $string['endpoints'] = 'End points';
 $string['lazyload'] = 'Delay Embed Loading (Lazyload)';
