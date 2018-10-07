@@ -91,6 +91,9 @@ class filter_oembed_testcase extends advanced_testcase {
      */
     public function test_filter() {
         $this->resetAfterTest(true);
+        // This test is marked as skipped because, writing tests that rely
+        // on talking to the Internet are a very, very bad idea.
+        $this->markTestSkipped();
 
         $curl = new curl();
         try {
