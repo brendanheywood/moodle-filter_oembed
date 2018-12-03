@@ -156,12 +156,18 @@ class provider {
             // Get the regex arrauy to look for matching schemes.
             $regexarr = $this->endpoints_regex($endpoint);
             foreach ($regexarr as $regex) {
-                if (preg_match($regex, $text)) {
-                    // If {format} is in the URL, replace it with the actual format.
-                    // At the moment, we're only supporting JSON, so this must be JSON.
-                    $requesturl = str_replace('{format}', 'json', $endpoint->url) .
-                           '?url=' . urlencode($text) . '&format=json';
-                    break 2; // Done, break out of all loops.
+                // Endpoints may have invalid regex strings that cause preg_match to throw an exception. We need to skip them
+                // in that case. Eventually, need to figure out how to inform the site about this.
+                try {
+                    if (preg_match($regex, $text)) {
+                        // If {format} is in the URL, replace it with the actual format.
+                        // At the moment, we're only supporting JSON, so this must be JSON.
+                        $requesturl = str_replace('{format}', 'json', $endpoint->url) .
+                            '?url=' . urlencode($text) . '&format=json';
+                        break 2; // Done, break out of all loops.
+                    }
+                } catch (\Exception $e) {
+                    continue;
                 }
             }
         }

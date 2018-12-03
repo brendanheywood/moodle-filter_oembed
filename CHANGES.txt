@@ -1,5 +1,12 @@
 Release Notes
 
+Release 3.3.2 (Build - 2018120300)
+Verified 3.6 compatibility.
+Added an exception handler to ignore malformed regex expressions that the plugin has no control over.
+Removed Office Mix tests as Office Mix has been discontinued.
+Updated Behat tests to access site administration in the new way.
+Updated Travis file to test multiple installs.
+
 Release 3.3.1 (Build - 2018051500)
 Fixed a unit test issue for Vimeo.
 An extra check to deal with potential malformed provider endpoint URL.

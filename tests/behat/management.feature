@@ -26,7 +26,7 @@ Feature: Admin can use the provider management page to view / edit / enable / di
   Scenario: Admin user carries out various provider management tasks.
   #This is Done as one scenario for performance.
     Given I log in as "admin"
-    When I navigate to "Manage providers" node in "Site administration>Plugins>Filters>Oembed Filter"
+    When I navigate to "Plugins > Filters > Oembed Filter > Manage providers" in site administration
     Then "#providermanagement" "css_element" should exist
     # Test filtering list.
     And I should see "YouTube" in the "oembedproviders" "table"

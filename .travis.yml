@@ -4,7 +4,7 @@ sudo: required
 
 addons:
   firefox: "47.0.1"
-  postgresql: "9.3"
+  postgresql: "9.4"
   apt:
     packages:
       - oracle-java8-installer
@@ -16,17 +16,54 @@ cache:
     - $HOME/.npm
 
 php:
- - 7.0
- - 7.1
+- 5.6
+- 7.1
+- 7.2
 
 env:
- global:
-  - MOODLE_BRANCH=MOODLE_34_STABLE
-  - IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_36_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_36_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_35_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_35_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_34_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_34_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_33_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+- MOODLE_BRANCH=MOODLE_33_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
 
- matrix:
-  - DB=pgsql
-  - DB=mysqli
+matrix:
+  exclude:
+  - php: 7.1
+    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.1
+    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.2
+    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.2
+    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 5.6
+    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 5.6
+    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.2
+    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.2
+    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 5.6
+    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 5.6
+    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.2
+    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.2
+    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 5.6
+    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 5.6
+    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.1
+    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - php: 7.1
+    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
 
 before_install:
   - phpenv config-rm xdebug.ini

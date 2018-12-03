@@ -20,6 +20,18 @@
     oembed managementpagerow template.
 
     Renders a single oembed managementpagerow. See template filter_oembed/managementpage for details.
+
+    Example context (json):
+    {
+        "pid": "72",
+        "extraclass": "testclass",
+        "editing": "1",
+        "providerurl": "https://theprovider.com/",
+        "providername": "The Provider",
+        "enableaction": "http://enableaction.com/",
+        "editaction": "http://editaction.com/",
+        "deleteaction": "http://deleteaction.com/"
+    }
 }}
 <tr id="oembed-display-providers_{{pid}}" class="{{extraclass}}{{#editing}} oembed-provider-editing{{/editing}}" data-pid="{{pid}}">
     <td id="oembed-display-providers_{{pid}}_c0" class="cell c0 provider">
