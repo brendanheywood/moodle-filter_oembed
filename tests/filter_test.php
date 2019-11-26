@@ -134,7 +134,7 @@ class filter_oembed_testcase extends advanced_testcase {
         $vimeooutput = '/.*<iframe .*src="https:\/\/player\.vimeo\.com\/video\/115538038\?.*".*/';
         $this->assertRegExp($vimeooutput, $filteroutput, 'Vimeo filter fails');
 
-        $tedoutput = '/.*<iframe .*src="https:\/\/embed\.ted\.com\/talks\/aj_jacobs_how_healthy_living_nearly_killed_me".*/';
+        $tedoutput = '/.*<a href="https:\/\/ted\.com\/talks\/aj_jacobs_how_healthy_living_nearly_killed_me".*/';
         $this->assertRegExp($tedoutput, $filteroutput, 'Ted filter fails');
 
         $polleverywhereoutput = '/.*<script src="https:\/\/www\.polleverywhere\.com\/'.

@@ -1,14 +1,20 @@
 language: php
 
-sudo: required
+# We use trusty as currently there is an issue with java and moodle-plugin-ci mustache linting which
+# causes causes tests to fail on xenial and bionic. (See https://github.com/blackboard-open-source/moodle-plugin-ci/issues/91).
+dist: trusty
+
+sudo: true
 
 addons:
   firefox: "47.0.1"
   postgresql: "9.4"
+  mysql: "8.0.2"
   apt:
     packages:
-      - oracle-java8-installer
-      - oracle-java8-set-default
+      - openjdk-8-jre-headless
+
+services: mysql
 
 cache:
   directories:
@@ -16,63 +22,26 @@ cache:
     - $HOME/.npm
 
 php:
-- 5.6
-- 7.1
-- 7.2
+  - 7.1
+  - 7.2
 
 env:
-- MOODLE_BRANCH=MOODLE_36_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-- MOODLE_BRANCH=MOODLE_36_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-- MOODLE_BRANCH=MOODLE_35_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-- MOODLE_BRANCH=MOODLE_35_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-- MOODLE_BRANCH=MOODLE_34_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-- MOODLE_BRANCH=MOODLE_34_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-- MOODLE_BRANCH=MOODLE_33_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-- MOODLE_BRANCH=MOODLE_33_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+  - MOODLE_BRANCH=MOODLE_38_STABLE DB=pgsql
+  - MOODLE_BRANCH=MOODLE_38_STABLE DB=mysqli
 
 matrix:
   exclude:
-  - php: 7.1
-    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.1
-    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.2
-    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.2
-    env: MOODLE_BRANCH=MOODLE_33_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 5.6
-    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 5.6
-    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.2
-    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.2
-    env: MOODLE_BRANCH=MOODLE_34_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 5.6
-    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 5.6
-    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.2
-    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.2
-    env: MOODLE_BRANCH=MOODLE_35_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 5.6
-    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 5.6
-    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.1
-    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=mysqli IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
-  - php: 7.1
-    env: MOODLE_BRANCH=MOODLE_36_STABLE DB=pgsql IGNORE_PATHS=amd/src/list.js,provider/powerbi/yui,Gruntfile.js
+    - php: 7.1
+      env: MOODLE_BRANCH=MOODLE_38_STABLE DB=mysqli
+    - php: 7.2
+      env: MOODLE_BRANCH=MOODLE_38_STABLE DB=pgsql
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - nvm install node
   - nvm install 8.9
   - nvm use 8.9
   - cd ../..
-  - composer selfupdate
-  - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci ^2
+  - composer create-project -n --no-dev --prefer-dist blackboard-open-source/moodle-plugin-ci ci ^2
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
 
 install:
@@ -91,4 +60,3 @@ script:
   - moodle-plugin-ci grunt
   - moodle-plugin-ci phpunit
   - moodle-plugin-ci behat
-  - moodle-plugin-ci phpunit --coverage-text
