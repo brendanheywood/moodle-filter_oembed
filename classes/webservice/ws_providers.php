@@ -36,7 +36,7 @@ class ws_providers extends \external_api {
      */
     public static function service_parameters() {
         $parameters = [
-            'scope' => new \external_value(PARAM_ALPHA, 'Providers scope - all, enabled, disabled', VALUE_OPTIONAL, 'all')
+            'scope' => new \external_value(PARAM_ALPHA, 'Providers scope - all, enabled, disabled', VALUE_DEFAULT, 'all')
         ];
         return new \external_function_parameters($parameters);
     }
