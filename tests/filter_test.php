@@ -41,7 +41,7 @@ class filter_oembed_testcase extends advanced_testcase {
     /**
      * Sets up the test cases.
      */
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
         $this->filter = new filter_oembed(context_system::instance(), array());
         // Ensure all tested providers are enabled.
@@ -111,7 +111,7 @@ class filter_oembed_testcase extends advanced_testcase {
         set_config('lazyload', 0, 'filter_oembed');
 
         $soundcloudlink = '<p><a href="https://soundcloud.com/forss/flickermood">soundcloud</a></p>';
-        $youtubelink = '<p><a href="https://www.youtube.com/watch?v=ns6gCZI-Nj8">Youtube</a></p>';
+        $youtubelink = '<p><a href="https://youtu.be/abuQk-6M5R4">Youtube</a></p>';
         $vimeolink = '<p><a href="http://vimeo.com/115538038">vimeo</a></p>';
         $tedlink = '<p><a href="https://ted.com/talks/aj_jacobs_how_healthy_living_nearly_killed_me">Ted</a></p>';
         $slidesharelink = '<p><a href="https://www.slideshare.net/timbrown/ideo-values-slideshare1">slideshare</a></p>';
@@ -123,30 +123,30 @@ class filter_oembed_testcase extends advanced_testcase {
 
         $filteroutput = $this->filter->filter($filterinput);
 
-        $youtubeoutput = '/.*<iframe .*src="https:\/\/www\.youtube\.com\/embed\/ns6gCZI-Nj8\?feature=oembed.*"/';
-        $this->assertRegExp($youtubeoutput, $filteroutput, 'Youtube filter fails');
+        $youtubeoutput = '/.*<iframe .*src="https:\/\/www\.youtube\.com\/embed\/abuQk-6M5R4\?feature=oembed.*"/';
+        $this->assertMatchesRegularExpression($youtubeoutput, $filteroutput, 'Youtube filter fails');
 
         $soundcloudoutput = '/.*<iframe .*src="https:\/\/w\.soundcloud\.com\/player\/'.
                             '\?visual=true&url=https%3A%2F%2Fapi\.soundcloud\.com'.
                             '%2Ftracks%2F293&show_artwork=true".*/';
-        $this->assertRegExp($soundcloudoutput, $filteroutput, 'Soundcloud filter fails');
+        $this->assertMatchesRegularExpression($soundcloudoutput, $filteroutput, 'Soundcloud filter fails');
 
         $vimeooutput = '/.*<iframe .*src="https:\/\/player\.vimeo\.com\/video\/115538038\?.*".*/';
-        $this->assertRegExp($vimeooutput, $filteroutput, 'Vimeo filter fails');
+        $this->assertMatchesRegularExpression($vimeooutput, $filteroutput, 'Vimeo filter fails');
 
         $tedoutput = '/.*<a href="https:\/\/ted\.com\/talks\/aj_jacobs_how_healthy_living_nearly_killed_me".*/';
-        $this->assertRegExp($tedoutput, $filteroutput, 'Ted filter fails');
+        $this->assertMatchesRegularExpression($tedoutput, $filteroutput, 'Ted filter fails');
 
         $polleverywhereoutput = '/.*<script src="https:\/\/www\.polleverywhere\.com\/'.
                                 'multiple_choice_polls\/AyCp2jkJ2HqYKXc\/web\.js'.
                                 '\?results_count_format=percent"><\/script>.*/';
-        $this->assertRegExp($polleverywhereoutput, $filteroutput, 'Poll everywhare filter fails');
+        $this->assertMatchesRegularExpression($polleverywhereoutput, $filteroutput, 'Poll everywhare filter fails');
 
         $slideshareoutput = '/.*<iframe .*src="https:\/\/www\.slideshare\.net\/slideshow\/embed_code\/key\/ywBrCQRAE5DZrD".*/';
-        $this->assertRegExp($slideshareoutput, $filteroutput, 'Slideshare filter fails');
+        $this->assertMatchesRegularExpression($slideshareoutput, $filteroutput, 'Slideshare filter fails');
 
         $issuuoutput = '/.*<div data-url="https:\/\/issuu\.com\/thinkuni\/docs\/think_issue12" .*';
         $issuuoutput .= 'class="issuuembed"><\/div>.*/';
-        $this->assertRegExp($issuuoutput, $filteroutput, 'Issuu filter fails');
+        $this->assertMatchesRegularExpression($issuuoutput, $filteroutput, 'Issuu filter fails');
     }
 }

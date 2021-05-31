@@ -96,10 +96,10 @@ class filter_oembed_service_testcase extends advanced_testcase {
         set_config('lazyload', 0, 'filter_oembed');
         $this->setAdminUser();
         $oembed = testable_oembed::get_instance();
-        $text = $oembed->html_output('https://www.youtube.com/watch?v=ns6gCZI-Nj8');
-        $expectedtext = '<div class="oembed-content oembed-responsive"><iframe width="480" height="270"' .
-            ' src="https://www.youtube.com/embed/ns6gCZI-Nj8?feature=oembed&v=ns6gCZI-Nj8"';
-        $this->assertContains($expectedtext, $text);
+        $text = $oembed->html_output('https://youtu.be/abuQk-6M5R4');
+        $expectedtext = '<div class="oembed-content oembed-responsive"><iframe width="200" height="113"' .
+            ' src="https://www.youtube.com/embed/abuQk-6M5R4?feature=oembed"';
+        $this->assertStringContainsString($expectedtext, $text);
     }
 
     /**
@@ -111,12 +111,12 @@ class filter_oembed_service_testcase extends advanced_testcase {
         set_config('lazyload', 1, 'filter_oembed');
         $this->setAdminUser();
         $oembed = testable_oembed::get_instance();
-        $text = $oembed->html_output('https://www.youtube.com/watch?v=ns6gCZI-Nj8');
-        $this->assertContains('<div class="oembed-card-container oembed-responsive">', $text);
-        $this->assertRegExp('/<div class="oembed-card oembed-processed" style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
+        $text = $oembed->html_output('https://youtu.be/abuQk-6M5R4');
+        $this->assertStringContainsString('<div class="oembed-card-container oembed-responsive">', $text);
+        $this->assertMatchesRegularExpression('/<div class="oembed-card oembed-processed" style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
             'data-aspect-ratio = "(?:.*)"(?:.*)>/is', $text);
-        $this->assertRegExp('/<div class="oembed-card-title">(?:.*)<\/div>/', $text);
-        $this->assertContains('<button class="btn btn-link oembed-card-play" aria-label="Play"></button>', $text);
+        $this->assertMatchesRegularExpression('/<div class="oembed-card-title">(?:.*)<\/div>/', $text);
+        $this->assertStringContainsString('<button class="btn btn-link oembed-card-play" aria-label="Play"></button>', $text);
 
     }
 
