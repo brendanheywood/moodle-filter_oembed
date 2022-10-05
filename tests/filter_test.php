@@ -41,7 +41,7 @@ class filter_oembed_testcase extends advanced_testcase {
     /**
      * Sets up the test cases.
      */
-    protected function setUp() {
+    protected function setUp() :void {
         parent::setUp();
         $this->filter = new filter_oembed(context_system::instance(), array());
         // Ensure all tested providers are enabled.
