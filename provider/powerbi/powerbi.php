@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * oEmbed provider for Power BI
+ *
  * @package filter_oembed
  * @author Sushant Gawali <sushant@introp.net>
  * @author Mike Churchward <mike.churchward@poetgroup.org>

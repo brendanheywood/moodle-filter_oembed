@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * oEmbed provider for Poll Everywhere
+ *
  * @package filter_oembed
  * @author James McQuillan <james.mcquillan@remote-learner.net>
  * @author Mike Churchward <mike.churchward@poetgroup.org>

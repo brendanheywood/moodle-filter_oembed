@@ -23,12 +23,16 @@
  * @copyright 2016 The POET Group
  */
 
+namespace filter_oembed;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/filter/oembed/tests/testable_oembed.php');
 
 /**
+ * Unit tests for the filter_oembed.
+ *
  * @group filter_oembed
  */
 class filter_oembed_service_test extends advanced_testcase {

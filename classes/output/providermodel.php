@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * providermodel output
+ *
  * @package filter_oembed
  * @author Guy Thomas <gthomas@moodlerooms.com>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -29,6 +31,7 @@ use filter_oembed\db\providerrow;
 
 /**
  * Class providermodel
+ *
  * @package filter_oembed\output
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @copyright 2016 The POET Group

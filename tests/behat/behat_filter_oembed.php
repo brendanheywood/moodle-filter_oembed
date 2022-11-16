@@ -101,8 +101,10 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * i filter provider list
+     *
      * @Given /^I filter the provider list to "(?P<provider_string>[^"]*)"$/
-     * @param $provider
+     * @param any $provider
      * @throws \Behat\Mink\Exception\ExpectationException
      */
     public function i_filter_provider_list($provider) {
@@ -119,7 +121,7 @@ class behat_filter_oembed extends behat_base {
      */
     protected function edit_form_xpath($provider) {
         $xpath = '//td/a[text()=\'' . $provider.'\']';
-        $xpath .= '/parent::td/div[contains(@class,\'oembed-provider-details\')]/form';
+        $xpath .= '/parent::td/span[contains(@class,\'oembed-provider-details\')]/form';
         return $xpath;
     }
 
@@ -133,6 +135,7 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * i edit provider with values
      * @Given /^I edit the provider "(?P<provider_string>[^"]*)" with the values:$/
      * @param string $provider
      * @param TableNode $table

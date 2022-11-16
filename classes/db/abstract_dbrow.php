@@ -16,6 +16,7 @@
 
 /**
  * Base class for classes which map to db tables.
+ * @package   filter_oembed\classes\db
  * @author    Guy Thomas <gthomas@moodlerooms.com>
  * @copyright Copyright (c) 2016 Blackboard Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

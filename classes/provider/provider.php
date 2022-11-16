@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Base class for oembed providers and plugins
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @author Erich M. Wappis <erich.wappis@uni-graz.at>
@@ -66,10 +68,16 @@ class provider {
     protected $source = '';
 
     /**
-     * @var Class constant descriptions.
+     * @var PROVIDER SOURCE LOCAL.
      */
     const PROVIDER_SOURCE_LOCAL = 'local::';
+    /**
+     * @var PROVIDER SOURCE DOWNLOAD.
+     */
     const PROVIDER_SOURCE_DOWNLOAD = 'download::';
+    /**
+     * @var PROVIDER SOURCE PLUGIN.
+     */
     const PROVIDER_SOURCE_PLUGIN = 'plugin::';
 
     /**

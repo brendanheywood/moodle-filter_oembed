@@ -36,7 +36,7 @@ require_once($CFG->libdir.'/filelib.php');
 /**
  * Main filter class for embedded remote content.
  *
- * @package    filter_oembed
+ * @package   filter_oembed
  * @copyright Erich M. Wappis / Guy Thomas 2016
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -46,8 +46,8 @@ class filter_oembed extends moodle_text_filter {
      * content gets filtered, links either wrapped in an <a> tag or in a <div> tag with class="oembed"
      * will be replaced by embeded content
      *
-     * @param $text HTML to be processed.
-     * @param $options
+     * @param string $text HTML to be processed.
+     * @param array  $options
      * @return string String containing processed HTML.
      */
     public function filter($text, array $options = array()) {
@@ -87,7 +87,7 @@ class filter_oembed extends moodle_text_filter {
     /**
      * Callback function to be used by the main filter
      *
-     * @param $match array An array of matched groups, where [1] is the URL matched.
+     * @param array $match An array of matched groups, where [1] is the URL matched.
      *
      */
     private static function find_oembeds_callback($match) {

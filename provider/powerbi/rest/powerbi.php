@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * REST API client for Power BI
+ *
  * @package filter_oembed
  * @author Sushant Gawali <sushant@introp.net>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -35,6 +37,7 @@ class powerbi extends \local_o365\rest\o365api {
     public function get_apiuri() {
         return "https://api.powerbi.com/beta/myorg/";
     }
+
     /**
      * Get the API client's oauth2 resource.
      *
@@ -43,6 +46,12 @@ class powerbi extends \local_o365\rest\o365api {
     public static function get_resource() {
         return 'https://analysis.windows.net/powerbi/api';
     }
+
+    /**
+     * Get report oembed url.
+     *
+     * @return string
+     */
     public function getreportoembedurl($reportid, $reportsdata) {
         $reportsdata = $this->process_apicall_response($reportsdata);
         foreach ($reportsdata['value'] as $report) {

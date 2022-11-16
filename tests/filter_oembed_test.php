@@ -26,6 +26,8 @@
  * @copyright Microsoft, Inc.
  */
 
+namespace filter_oembed;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
