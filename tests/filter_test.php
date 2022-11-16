@@ -88,6 +88,7 @@ class filter_oembed_testcase extends advanced_testcase {
      * Performs unit tests for all services supported by the filter.
      *
      * Need to update this test to not contact external services.
+     * @covers \filter_oembed\filter\filter
      */
     public function test_filter() {
         $this->resetAfterTest(true);

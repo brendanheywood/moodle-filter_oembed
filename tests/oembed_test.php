@@ -58,6 +58,7 @@ class filter_oembed_service_testcase extends advanced_testcase {
 
     /**
      * Test instance.
+     * @covers \filter_oembed\classes\service\oembed\get_instance
      */
     public function test_instance() {
         $this->resetAfterTest(true);
@@ -66,6 +67,10 @@ class filter_oembed_service_testcase extends advanced_testcase {
         $this->assertNotEmpty($oembed);
     }
 
+    /**
+     * Test set_providers
+     * @covers \filter_oembed\classes\service\oembed\set_providers
+     */
     public function test_set_providers() {
         $this->resetAfterTest(true);
         $this->setAdminUser();

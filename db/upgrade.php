@@ -25,8 +25,6 @@
  * Soundcloud (Troy Williams)
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 use filter_oembed\service\oembed;
 use filter_oembed\provider\provider;
 

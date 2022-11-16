@@ -27,8 +27,6 @@ use filter_oembed\service\oembed;
 use filter_oembed\provider\provider;
 use filter_oembed\db\providerrow;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Class providermodel
  * @package filter_oembed\output

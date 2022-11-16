@@ -23,9 +23,7 @@
 
 namespace filter_oembed\db;
 
-defined('MOODLE_INTERNAL') || die();
-
-class providerrow extends abstract_dbrow{
+class providerrow extends abstract_dbrow {
     /**
      * @var int id
      */

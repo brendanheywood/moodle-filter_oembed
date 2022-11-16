@@ -24,8 +24,6 @@
 namespace filter_oembed\db;
 use stdClass;
 
-defined('MOODLE_INTERNAL') || die();
-
 class abstract_dbrow {
 
     /**

@@ -26,8 +26,6 @@ namespace filter_oembed\output;
 use filter_oembed\db\providerrow;
 use filter_oembed\provider\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 class managementpage implements \renderable, \templatable {
 
     /**

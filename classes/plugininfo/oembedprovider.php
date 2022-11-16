@@ -23,8 +23,6 @@
 
 namespace filter_oembed\plugininfo;
 
-defined('MOODLE_INTERNAL') || die();
-
 class oembedprovider extends \core\plugininfo\base {
     public function is_uninstall_allowed() {
         return true;

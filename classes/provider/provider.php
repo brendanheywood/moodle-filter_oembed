@@ -25,7 +25,6 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Base class for oembed providers and plugins. Plugins should extend this class.

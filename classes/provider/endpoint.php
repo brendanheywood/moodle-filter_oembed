@@ -23,8 +23,6 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Base class for oembed endpoints.
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
