@@ -83,6 +83,7 @@ class filter_oembed_service_test extends advanced_testcase {
 
     /**
      * Test providers.
+     * @covers \filter_oembed\classes\service\oembed\get_instance
      */
     public function test_providers() {
         $this->resetAfterTest(true);
@@ -95,6 +96,7 @@ class filter_oembed_service_test extends advanced_testcase {
     /**
      * Test html.
      * TODO - have a local oembed service with test fixtures for performing test.
+     * @covers \filter_oembed\classes\service\oembed\html_output
      */
     public function test_embed_html() {
         $this->resetAfterTest(true);
@@ -110,6 +112,7 @@ class filter_oembed_service_test extends advanced_testcase {
     /**
      * Test lazy load html.
      * TODO - have a local oembed service with test fixtures for performing test.
+     * @covers \filter_oembed\classes\service\oembed\get_instance
      */
     public function test_preloader_html() {
         $this->resetAfterTest(true);
@@ -118,15 +121,16 @@ class filter_oembed_service_test extends advanced_testcase {
         $oembed = testable_oembed::get_instance();
         $text = $oembed->html_output('https://youtu.be/abuQk-6M5R4');
         $this->assertStringContainsString('<div class="oembed-card-container oembed-responsive">', $text);
-        $this->assertMatchesRegularExpression('/<div class="oembed-card oembed-processed" style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
-            'data-aspect-ratio = "(?:.*)"(?:.*)>/is', $text);
+        $this->assertMatchesRegularExpression('/<div class="oembed-card oembed-processed"'.
+            ' style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
+            ' data-aspect-ratio = "(?:.*)"(?:.*)>/is', $text);
         $this->assertMatchesRegularExpression('/<div class="oembed-card-title">(?:.*)<\/div>/', $text);
         $this->assertStringContainsString('<button class="btn btn-link oembed-card-play" aria-label="Play"></button>', $text);
-
     }
 
     /**
      * Test download providers.
+     * @covers \filter_oembed\classes\service\oembed\download_providers
      */
     public function test_download_providers() {
         $this->resetAfterTest(true);
@@ -136,6 +140,7 @@ class filter_oembed_service_test extends advanced_testcase {
 
     /**
      * Test get local providers.
+     * @covers \filter_oembed\classes\service\oembed\get_local_providers
      */
     public function test_get_local_providers() {
         $this->resetAfterTest(true);
@@ -145,6 +150,7 @@ class filter_oembed_service_test extends advanced_testcase {
 
     /**
      * Test get plugin providers.
+     * @covers \filter_oembed\classes\service\oembed\get_plugin_providers
      */
     public function test_get_plugin_providers() {
         $this->resetAfterTest(true);
@@ -154,6 +160,7 @@ class filter_oembed_service_test extends advanced_testcase {
 
     /**
      * Test match_provider_names.
+     * @covers \filter_oembed\classes\service\oembed\match_provider_names
      */
     public function test_match_provider_names() {
         $this->resetAfterTest(true);
@@ -197,6 +204,7 @@ class filter_oembed_service_test extends advanced_testcase {
 
     /**
      * Test the "__get" magic method.
+     * @covers \filter_oembed\classes\service\oembed\__get
      */
     public function test_get() {
         $this->resetAfterTest(true);
@@ -228,7 +236,9 @@ class filter_oembed_service_test extends advanced_testcase {
 
     /**
      * Test enable and disable provider functions.
-     * Tests: enable_provider, disable_provider, set_provider_enable_value.
+     * @covers \filter_oembed\classes\service\oembed\enable_provider
+     * @covers \filter_oembed\classes\service\oembed\disable_provider
+     * @covers \filter_oembed\classes\service\oembed\set_provider_enable_value
      */
     public function test_enable_disable_provider() {
         $this->resetAfterTest(true);

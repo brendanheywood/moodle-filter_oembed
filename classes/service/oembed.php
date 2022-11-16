@@ -251,7 +251,7 @@ class oembed {
         return $renderer->preload($this->oembed_gethtml($jsonarr, $params), $jsonarr);
     }
 
-    // ---- PROVIDER DATA MANAGEMENT SECTION ----
+    // PROVIDER DATA MANAGEMENT SECTION.
 
     /**
      * Function to update provider data in database with current provider sources.
@@ -557,7 +557,7 @@ class oembed {
         return $foundrecord;
     }
 
-    // ---- OTHER HELPER FUNCTIONS ----
+    // OTHER HELPER FUNCTIONS.
 
     /**
      * Magic method for getting properties.

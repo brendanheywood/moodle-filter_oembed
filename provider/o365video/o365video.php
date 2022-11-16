@@ -23,8 +23,6 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * oEmbed provider implementation for Docs.com
  */
