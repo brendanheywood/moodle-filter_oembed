@@ -586,7 +586,7 @@ class oembed {
     /**
      * Set the provider to "disabled".
      *
-     * @param int | provider The provider to disable.
+     * @param int|provider The provider to disable.
      */
     public function disable_provider($provider) {
         $this->set_provider_enable_value($provider, 0);
@@ -595,7 +595,7 @@ class oembed {
     /**
      * Delete the local provider.
      *
-     * @param int | provider The provider to delete.
+     * @param int|provider The provider to delete.
      */
     public function delete_provider($provider) {
         global $DB;

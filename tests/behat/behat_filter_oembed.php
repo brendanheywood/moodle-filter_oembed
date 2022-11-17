@@ -20,7 +20,7 @@
  * @copyright Copyright (c) 2016 Blackboard Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace filter_oembed\tests;
+namespace filter_oembed;
 
 use Behat\Gherkin\Node\TableNode;
 
