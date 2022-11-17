@@ -577,7 +577,7 @@ class oembed {
     /**
      * Set the provider to "enabled".
      *
-     * @param int | provider The provider to enable.
+     * @param int|provider The provider to enable.
      */
     public function enable_provider($provider) {
         $this->set_provider_enable_value($provider, 1);

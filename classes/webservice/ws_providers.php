@@ -33,6 +33,7 @@ require_once(__DIR__ . '/../../../../lib/externallib.php');
  */
 class ws_providers extends \external_api {
     /**
+     * [service_parameters description]
      * @return \external_function_parameters
      */
     public static function service_parameters() {
@@ -43,6 +44,7 @@ class ws_providers extends \external_api {
     }
 
     /**
+     * [service_returns description]
      * @return \external_single_structure
      */
     public static function service_returns() {
@@ -75,9 +77,9 @@ class ws_providers extends \external_api {
     }
 
     /**
-     * @param int $pid
-     * @param string $action
-     * @return array
+     * [service description]
+     * @param  [type] $scope [description]
+     * @return [type]        [description]
      */
     public static function service($scope) {
         global $PAGE;
