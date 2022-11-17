@@ -25,6 +25,9 @@
 namespace filter_oembed\db;
 use stdClass;
 
+/**
+ * Base class for classes which map to db tables.
+ */
 class abstract_dbrow {
 
     /**

@@ -16,6 +16,7 @@
 
 /**
  * Provider mform.
+ * @package   filter_oembed
  * @author    Guy Thomas <gthomas@moodlerooms.com>
  * @copyright Copyright (c) 2016 Blackboard Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,7 +28,9 @@ use moodleform;
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot.'/lib/formslib.php');
-
+/**
+ * Provider mform.
+ */
 class provider extends moodleform {
     /**
      * Define this form - is called from parent constructor.

@@ -35,7 +35,7 @@ require_once($CFG->libdir.'/filelib.php');
 
 /**
  * Class oembed
- * @package filter_oembed\service
+ * @package filter_oembed
  * @copyright Erich M. Wappis / Guy Thomas 2016
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * Singleton class providing function for filtering embedded content links in text.

@@ -26,6 +26,7 @@ require_once(__DIR__ . '/../../../../lib/externallib.php');
 /**
  * Web service for managing provider visibility.
  * @author    Guy Thomas
+ * @package   filter_oembed
  * @copyright Copyright (c) 2016 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

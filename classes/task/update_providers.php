@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Task to update providers list
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,7 +25,9 @@
 namespace filter_oembed\task;
 
 use filter_oembed\service\oembed;
-
+/**
+ * Task to update providers list
+ */
 class update_providers extends \core\task\scheduled_task {
 
     /**
@@ -37,7 +40,7 @@ class update_providers extends \core\task\scheduled_task {
     }
 
     /**
-     * Run forum cron.
+     * Run cron.
      */
     public function execute() {
         oembed::update_provider_data();

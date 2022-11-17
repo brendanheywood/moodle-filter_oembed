@@ -29,7 +29,9 @@ namespace filter_oembed\provider;
 
 
 /**
- * Base class for oembed providers and plugins. Plugins should extend this class.
+ * Base class for oembed providers and plugins.
+ *
+ * Plugins should extend this class.
  * If "filter" is provided, there is nothing else a plugin needs to implement.
  * Plugins can instead / additionally override "get_oembed_request", "oembed_response" and "endpoints_regex".
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -87,7 +89,7 @@ class provider {
      * include "_" in variable names, which violates the Moodle coding standard. Currently,
      * this is managed by the update processes to ensure compatibility.
      *
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param any $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if (is_object($data)) {

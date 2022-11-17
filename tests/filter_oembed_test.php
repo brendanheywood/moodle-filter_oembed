@@ -34,10 +34,15 @@ global $CFG;
 require_once($CFG->dirroot . '/filter/oembed/filter.php');
 
 /**
+ * Unit tests for the filter_oembed.
+ *
  * @group filter_oembed
  */
 class filter_oembed_test extends advanced_testcase {
-
+    /**
+     * [$filter description]
+     * @var [type]
+     */
     protected $filter;
 
     /**
