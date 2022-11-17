@@ -26,13 +26,13 @@
 namespace filter_oembed\provider;
 
 /**
- * oEmbed provider implementation for Docs.com
+ * oEmbed provider implementation for Office365 video
  */
 class o365video extends provider {
 
     /**
-     * Constructor.
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * Office365 provider Constructor.
+     * @param any $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if ($data === null) {

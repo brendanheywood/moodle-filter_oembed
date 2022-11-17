@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * filter_oembed capabilities list
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -22,8 +23,14 @@
  */
 
 namespace filter_oembed\plugininfo;
-
+/**
+ * filter_oembed capabilities list
+ */
 class oembedprovider extends \core\plugininfo\base {
+    /**
+     * filter_oembed has the uninstall capability
+     * @return boolean always true
+     */
     public function is_uninstall_allowed() {
         return true;
     }

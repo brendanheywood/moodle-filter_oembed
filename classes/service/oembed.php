@@ -662,7 +662,7 @@ class oembed {
     /**
      * Set the provider enabled field to the specified value.
      *
-     * @param int | object $provider The provider to modify.
+     * @param int|object $provider The provider to modify.
      * @param int $value Value to set.
      */
     private function set_provider_enable_value($provider, $value) {

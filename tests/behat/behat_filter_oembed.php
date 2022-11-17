@@ -20,11 +20,15 @@
  * @copyright Copyright (c) 2016 Blackboard Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace filter_oembed\tests;
 
 use Behat\Gherkin\Node\TableNode;
 
 require_once(__DIR__ . '/../../../../lib/behat/behat_base.php');
-
+/**
+ * Oembed filter custom behat steps.
+ * @package filter_oembed
+ */
 class behat_filter_oembed extends behat_base {
 
     /**
@@ -83,6 +87,7 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * Ensure that the provider status is disabled
      * @Given /^the provider "(?P<provider_string>[^"]*)" is disabled$/
      * @param string $provider
      * @throws \Behat\Mink\Exception\ExpectationException
@@ -92,6 +97,7 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * Ensure that the provider status is enabled
      * @Given /^the provider "(?P<provider_string>[^"]*)" is enabled$/
      * @param string $provider
      * @throws \Behat\Mink\Exception\ExpectationException

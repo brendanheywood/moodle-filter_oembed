@@ -32,8 +32,8 @@ namespace filter_oembed\provider;
 class pollev extends provider {
 
     /**
-     * Constructor.
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * Poll Everywhere oembed constructor.
+     * @param any $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if ($data === null) {

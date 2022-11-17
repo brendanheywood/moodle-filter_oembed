@@ -48,9 +48,10 @@ class powerbi extends \local_o365\rest\o365api {
     }
 
     /**
-     * Get report oembed url.
-     *
-     * @return string
+     * [getreportoembedurl description]
+     * @param  int    $reportid    [description]
+     * @param  any    $reportsdata [description]
+     * @return string              [description]
      */
     public function getreportoembedurl($reportid, $reportsdata) {
         $reportsdata = $this->process_apicall_response($reportsdata);
