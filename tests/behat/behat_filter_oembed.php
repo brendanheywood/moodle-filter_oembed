@@ -130,7 +130,7 @@ class behat_filter_oembed extends behat_base {
      */
     protected function edit_form_xpath($provider) {
         $xpath = '//td/a[text()=\'' . $provider.'\']';
-        $xpath .= '/parent::td/span[contains(@class,\'oembed-provider-details\')]/form';
+        $xpath .= '/parent::td/div[contains(@class,\'oembed-provider-details\')]/form';
         return $xpath;
     }
 

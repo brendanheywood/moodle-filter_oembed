@@ -94,10 +94,13 @@ class filter_oembed_test extends advanced_testcase {
     /**
      * Performs unit tests for all services supported by the filter.
      *
-     * Need to update this test to not contact external services.
+     * TODO: Need to update this test to not contact external services.
      * @covers \filter_oembed\filter\filter
      */
     public function test_filter() {
+        if (!PHPUNIT_LONGTEST) {
+            $this->markTestSkipped('Turn on PHPUNIT_LONGTEST to perform test calling external urls.');
+        }
         $this->resetAfterTest(true);
 
         $curl = new curl();

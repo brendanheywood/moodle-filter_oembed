@@ -103,6 +103,9 @@ class filter_oembed_service_test extends advanced_testcase {
      * @covers \filter_oembed\classes\service\oembed\html_output
      */
     public function test_embed_html() {
+        if (!PHPUNIT_LONGTEST) {
+            $this->markTestSkipped('Turn on PHPUNIT_LONGTEST to perform test calling external urls.');
+        }
         $this->resetAfterTest(true);
         set_config('lazyload', 0, 'filter_oembed');
         $this->setAdminUser();
@@ -119,6 +122,9 @@ class filter_oembed_service_test extends advanced_testcase {
      * @covers \filter_oembed\classes\service\oembed\get_instance
      */
     public function test_preloader_html() {
+        if (!PHPUNIT_LONGTEST) {
+            $this->markTestSkipped('Turn on PHPUNIT_LONGTEST to perform test calling external urls.');
+        }
         $this->resetAfterTest(true);
         set_config('lazyload', 1, 'filter_oembed');
         $this->setAdminUser();
