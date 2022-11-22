@@ -8,15 +8,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          node: '18.12.1'
           - php: '7.3'
-            moodle-branch: 'MOODLE_309_STABLE'
+            moodle-branch: 'MOODLE_39_STABLE'
             database: 'pgsql'
-            node: '18.12.1'
           - php: '7.4'
             moodle-branch: 'MOODLE_311_STABLE'
             database: 'mariadb'
           - php: '8.0'
             moodle-branch: 'MOODLE_400_STABLE'
+            database: 'mysqli'
 
     services:
       postgres:
