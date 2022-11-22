@@ -35,7 +35,7 @@ require_once($CFG->dirroot . '/filter/oembed/tests/testable_oembed.php');
  *
  * @group filter_oembed
  */
-class filter_oembed_service_test extends advanced_testcase {
+class filter_oembed_service_test extends \advanced_testcase {
 
     /**
      * Make sure providers array is correct.

@@ -38,7 +38,7 @@ require_once($CFG->dirroot . '/filter/oembed/filter.php');
  *
  * @group filter_oembed
  */
-class filter_oembed_test extends advanced_testcase {
+class filter_oembed_test extends \advanced_testcase {
     /**
      * [$filter description]
      * @var [type]
