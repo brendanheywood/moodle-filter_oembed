@@ -1,9 +1,6 @@
 name: Moodle plugin CI
 on: [push, pull_request]
 
-env:
-  NODE_VERSION: '18.12.1'
-
 jobs:
   test:
     runs-on: 'ubuntu-latest'
@@ -14,12 +11,15 @@ jobs:
           - php: '7.3'
             moodle-branch: 'MOODLE_39_STABLE'
             database: 'pgsql'
+            node: '16.18.1'
           - php: '7.4'
             moodle-branch: 'MOODLE_311_STABLE'
             database: 'mariadb'
+            node: '16.18.1'
           - php: '8.0'
             moodle-branch: 'MOODLE_400_STABLE'
             database: 'mariadb'
+            node: '16.18.1'
 
     services:
       postgres:
@@ -53,7 +53,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
