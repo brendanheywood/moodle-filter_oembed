@@ -8,14 +8,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - php: '7.3'
+            moodle-branch: 'MOODLE_309_STABLE'
+            database: 'pgsql'
+            node: '18.12.1'
           - php: '7.4'
             moodle-branch: 'MOODLE_311_STABLE'
             database: 'mariadb'
-            node: '18.12.1'
-          - php: '7.3'
-            moodle-branch: 'MOODLE_310_STABLE'
-            database: 'pgsql'
-            node: '18.12.1'
+          - php: '8.0'
+            moodle-branch: 'MOODLE_400_STABLE'
 
     services:
       postgres:
@@ -106,7 +107,7 @@ jobs:
 
       - name: grunt
         if: ${{ always() }}
-        run: moodle-plugin-ci grunt -t amd -t gherkinlint -t stylelint:css -t stylelint:scss
+        run: moodle-plugin-ci grunt
 
       - name: phpunit
         if: ${{ always() }}
