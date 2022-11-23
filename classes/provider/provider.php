@@ -192,7 +192,12 @@ class provider {
      */
     public function oembed_response($url) {
         $ret = download_file_content($url, null, null, true, 300, 20, false, null, false);
-        return json_decode($ret->results, true);
+        if ($ret->results) {
+            return json_decode($ret->results, true);
+        } else {
+            debugging("Error getting oembed URL $url [".$ret->error."]");
+            return false;
+        }
     }
 
     /**
