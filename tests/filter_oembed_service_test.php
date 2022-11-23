@@ -237,7 +237,7 @@ class filter_oembed_service_test extends \advanced_testcase {
         try {
             $noaccess = $oembed->noaccess;
             $this->assertTrue(false);
-        } catch (coding_exception $e) {
+        } catch (\coding_exception $e) {
             $expectedmessage = 'Coding error detected, it must be fixed by a programmer: ' .
                                'noaccess is not a publicly accessible property of filter_oembed\testable_oembed';
             $this->assertEquals($expectedmessage, $e->getMessage());
