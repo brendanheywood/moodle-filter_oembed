@@ -50,7 +50,7 @@ class filter_oembed_test extends \advanced_testcase {
      */
     protected function setUp(): void {
         parent::setUp();
-        $this->filter = new filter_oembed(context_system::instance(), array());
+        $this->filter = new \filter_oembed(context_system::instance(), array());
         // Ensure all tested providers are enabled.
         $oembed = \filter_oembed\service\oembed::get_instance('all');
         foreach ($oembed->providers as $pid => $provider) {
