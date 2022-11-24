@@ -1,8 +1,8 @@
 # Release Notes
 
-## 3.8.1
+## 4.0.0 (Build - 2022112400)
 Compatibility with Moodle 4.0
-Remove 17 errors and 38 warnings from codechecker
+Remove errors and warnings from codechecker and phpdoc
 
 ## 3.8.0 (Build 2019112600)
 Compatibility with Moodle 3.8 & 3.9
