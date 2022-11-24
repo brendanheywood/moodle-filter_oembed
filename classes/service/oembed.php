@@ -35,7 +35,7 @@ require_once($CFG->libdir.'/filelib.php');
 
 /**
  * Class oembed
- * @package filter_oembed\service
+ * @package filter_oembed
  * @copyright Erich M. Wappis / Guy Thomas 2016
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * Singleton class providing function for filtering embedded content links in text.
@@ -147,8 +147,12 @@ class oembed {
 
                 // If we have a consumer request, we're done searching. Try for a response.
                 $jsonret = $provider->oembed_response($requesturl);
-                if (!$jsonret) {
+
+                if (!$jsonret or !array_key_exists('html', $jsonret)) {
                     $output = '';
+                    if (array_key_exists('status', $jsonret)) {
+                        debugging("Error getting oembed URL $requesturl [".implode(" -- ", $jsonret)."]");
+                    }
                 } else if ($lazyload) {
                     $output = $this->oembed_getpreloadhtml($jsonret, $params);
                 } else {
@@ -251,7 +255,7 @@ class oembed {
         return $renderer->preload($this->oembed_gethtml($jsonarr, $params), $jsonarr);
     }
 
-    // ---- PROVIDER DATA MANAGEMENT SECTION ----
+    // PROVIDER DATA MANAGEMENT SECTION.
 
     /**
      * Function to update provider data in database with current provider sources.
@@ -557,7 +561,7 @@ class oembed {
         return $foundrecord;
     }
 
-    // ---- OTHER HELPER FUNCTIONS ----
+    // OTHER HELPER FUNCTIONS.
 
     /**
      * Magic method for getting properties.
@@ -577,7 +581,7 @@ class oembed {
     /**
      * Set the provider to "enabled".
      *
-     * @param int | provider The provider to enable.
+     * @param int|provider The provider to enable.
      */
     public function enable_provider($provider) {
         $this->set_provider_enable_value($provider, 1);
@@ -586,7 +590,7 @@ class oembed {
     /**
      * Set the provider to "disabled".
      *
-     * @param int | provider The provider to disable.
+     * @param int|provider The provider to disable.
      */
     public function disable_provider($provider) {
         $this->set_provider_enable_value($provider, 0);
@@ -595,7 +599,7 @@ class oembed {
     /**
      * Delete the local provider.
      *
-     * @param int | provider The provider to delete.
+     * @param int|provider The provider to delete.
      */
     public function delete_provider($provider) {
         global $DB;
@@ -662,7 +666,7 @@ class oembed {
     /**
      * Set the provider enabled field to the specified value.
      *
-     * @param int | object $provider The provider to modify.
+     * @param int|object $provider The provider to modify.
      * @param int $value Value to set.
      */
     private function set_provider_enable_value($provider, $value) {

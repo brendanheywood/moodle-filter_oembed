@@ -16,6 +16,7 @@
 
 /**
  * Oembed filter custom behat steps.
+ *
  * @author    Guy Thomas <gthomas@moodlerooms.com>
  * @copyright Copyright (c) 2016 Blackboard Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,7 +25,11 @@
 use Behat\Gherkin\Node\TableNode;
 
 require_once(__DIR__ . '/../../../../lib/behat/behat_base.php');
-
+/**
+ * Oembed filter custom behat steps.
+ *
+ * @package filter_oembed
+ */
 class behat_filter_oembed extends behat_base {
 
     /**
@@ -83,6 +88,8 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * Ensure that the provider status is disabled
+     *
      * @Given /^the provider "(?P<provider_string>[^"]*)" is disabled$/
      * @param string $provider
      * @throws \Behat\Mink\Exception\ExpectationException
@@ -92,6 +99,8 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * Ensure that the provider status is enabled
+     *
      * @Given /^the provider "(?P<provider_string>[^"]*)" is enabled$/
      * @param string $provider
      * @throws \Behat\Mink\Exception\ExpectationException
@@ -101,8 +110,10 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * i filter provider list
+     *
      * @Given /^I filter the provider list to "(?P<provider_string>[^"]*)"$/
-     * @param $provider
+     * @param any $provider
      * @throws \Behat\Mink\Exception\ExpectationException
      */
     public function i_filter_provider_list($provider) {
@@ -133,6 +144,7 @@ class behat_filter_oembed extends behat_base {
     }
 
     /**
+     * i edit provider with values
      * @Given /^I edit the provider "(?P<provider_string>[^"]*)" with the values:$/
      * @param string $provider
      * @param TableNode $table

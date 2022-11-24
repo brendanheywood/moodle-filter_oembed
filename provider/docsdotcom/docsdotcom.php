@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * oEmbed provider for Microsoft docs.com
+ *
  * @package filter_oembed
  * @author James McQuillan <james.mcquillan@remote-learner.net>
  * @author Mike Churchward <mike.churchward@poetgroup.org>
@@ -24,8 +26,6 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * oEmbed provider implementation for Docs.com
  */
@@ -33,7 +33,7 @@ class docsdotcom extends provider {
 
     /**
      * Constructor.
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param any $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if ($data === null) {

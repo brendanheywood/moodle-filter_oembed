@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Base class for oembed endpoints.
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -22,8 +23,6 @@
  */
 
 namespace filter_oembed\provider;
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Base class for oembed endpoints.
@@ -53,7 +52,7 @@ class endpoint {
 
     /**
      * Constructor.
-     * @param $data JSON decoded array or data object containing all endpoint data.
+     * @param any $data JSON decoded array or data object containing all endpoint data.
      */
     public function __construct($data = null) {
         if (is_object($data)) {

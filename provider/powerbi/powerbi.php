@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * oEmbed provider for Power BI
+ *
  * @package filter_oembed
  * @author Sushant Gawali <sushant@introp.net>
  * @author Mike Churchward <mike.churchward@poetgroup.org>
@@ -24,8 +26,6 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * oEmbed provider implementation for Docs.com
  */
@@ -33,7 +33,7 @@ class powerbi extends provider {
 
     /**
      * Constructor.
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param any $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if ($data === null) {
@@ -104,6 +104,11 @@ class powerbi extends provider {
         return $matched[0];
     }
 
+    /**
+     * [getembedhtml description]
+     * @param  [type] $embedurl [description]
+     * @return string           [description]
+     */
     private function getembedhtml($embedurl) {
         return '<iframe class="powerbi_iframe" src="'. $embedurl . '" '
                 . 'height="768px" width="99%" frameborder="0" seamless></iframe>';

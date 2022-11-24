@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Base class for oembed providers and plugins
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @author Erich M. Wappis <erich.wappis@uni-graz.at>
@@ -25,10 +27,11 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
- * Base class for oembed providers and plugins. Plugins should extend this class.
+ * Base class for oembed providers and plugins.
+ *
+ * Plugins should extend this class.
  * If "filter" is provided, there is nothing else a plugin needs to implement.
  * Plugins can instead / additionally override "get_oembed_request", "oembed_response" and "endpoints_regex".
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -67,10 +70,16 @@ class provider {
     protected $source = '';
 
     /**
-     * @var Class constant descriptions.
+     * @var PROVIDER SOURCE LOCAL.
      */
     const PROVIDER_SOURCE_LOCAL = 'local::';
+    /**
+     * @var PROVIDER SOURCE DOWNLOAD.
+     */
     const PROVIDER_SOURCE_DOWNLOAD = 'download::';
+    /**
+     * @var PROVIDER SOURCE PLUGIN.
+     */
     const PROVIDER_SOURCE_PLUGIN = 'plugin::';
 
     /**
@@ -80,7 +89,7 @@ class provider {
      * include "_" in variable names, which violates the Moodle coding standard. Currently,
      * this is managed by the update processes to ensure compatibility.
      *
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param any $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if (is_object($data)) {
@@ -183,7 +192,12 @@ class provider {
      */
     public function oembed_response($url) {
         $ret = download_file_content($url, null, null, true, 300, 20, false, null, false);
-        return json_decode($ret->results, true);
+        if ($ret->results) {
+            return json_decode($ret->results, true);
+        } else {
+            debugging("Error getting oembed URL $url [".$ret->error."]");
+            return false;
+        }
     }
 
     /**

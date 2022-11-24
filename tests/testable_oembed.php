@@ -22,7 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace filter_oembed;
 
 use filter_oembed\service\oembed;
 
@@ -52,6 +52,7 @@ class testable_oembed extends oembed {
 
     /**
      * Calls the protected set_providers function.
+     * @param string $state
      */
     public function protected_set_providers($state = 'enabled') {
         return self::set_providers($state);
@@ -80,6 +81,8 @@ class testable_oembed extends oembed {
 
     /**
      * Calls the protected match_provider_names function.
+     * @param array  $providerarray
+     * @param object $provider
      */
     public static function protected_match_provider_names($providerarray, $provider) {
         return self::match_provider_names($providerarray, $provider);
@@ -94,6 +97,7 @@ class testable_oembed extends oembed {
 
     /**
      * Calls the protected get_all_provider_data function.
+     * @param string $fields
      */
     public static function protected_get_all_provider_data($fields = '*') {
         return self::get_all_provider_data($fields);

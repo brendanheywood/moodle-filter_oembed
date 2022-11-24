@@ -16,15 +16,16 @@
 
 /**
  * Renderer for oembed filter.
+ * @package   filter_oembed
  * @author    gthomas2
  * @copyright Copyright (c) 2016 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace filter_oembed\output;
-
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Renderer for oembed filter.
+ */
 class renderer extends \plugin_renderer_base {
 
     /**

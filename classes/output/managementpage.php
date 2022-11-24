@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Management page output
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,8 +28,9 @@ namespace filter_oembed\output;
 use filter_oembed\db\providerrow;
 use filter_oembed\provider\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Management page class.
+ */
 class managementpage implements \renderable, \templatable {
 
     /**

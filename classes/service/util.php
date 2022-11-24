@@ -31,6 +31,7 @@ require_once($CFG->dirroot . '/lib/externallib.php');
 
 /**
  * General utility class.
+ * @package   filter_oembed
  * @author    gthomas2
  * @copyright Copyright (c) 2016 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -41,9 +42,9 @@ class util {
      *
      * NOTE: Current limitations - does not recurse to properties that are object instances or arrays.
      *
-     * @param $classorobject
+     * @param any $classorobject
      * @throws coding_exception
-     * @return external_value[]
+     * @return array external_value[]
      */
     public static function define_class_for_webservice($classorobject) {
         $reflect = new \ReflectionClass($classorobject);

@@ -8,14 +8,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - php: '7.3'
+            moodle-branch: 'MOODLE_39_STABLE'
+            database: 'pgsql'
+            node: '16.18.1'
           - php: '7.4'
             moodle-branch: 'MOODLE_311_STABLE'
             database: 'mariadb'
-            node: '14.15.0'
-          - php: '7.3'
-            moodle-branch: 'MOODLE_310_STABLE'
-            database: 'pgsql'
-            node: '14.15.0'
+            node: '16.18.1'
+          - php: '8.0'
+            moodle-branch: 'MOODLE_400_STABLE'
+            database: 'mariadb'
+            node: '16.18.1'
 
     services:
       postgres:
@@ -42,12 +46,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: plugin
 
       - name: Install node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
@@ -56,6 +60,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: zip, gd, mbstring, pgsql, mysqli
+          ini-values: max_input_vars=5000
 
       - name: Deploy moodle-plugin-ci
         run: |

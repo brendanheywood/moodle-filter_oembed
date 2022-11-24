@@ -16,12 +16,12 @@
 
 /**
  * General lib file
+ * @package   filter_oembed
  * @author    Guy Thomas <gthomas@moodlerooms.com>
  * @copyright Copyright (c) 2016 Blackboard Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 
 use filter_oembed\forms\provider;
 

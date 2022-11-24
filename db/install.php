@@ -25,8 +25,6 @@
  * Soundcloud (Troy Williams)
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 use filter_oembed\service\oembed;
 /**
  * Installs the OEmbed filter.

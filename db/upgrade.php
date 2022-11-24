@@ -25,15 +25,13 @@
  * Soundcloud (Troy Williams)
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 use filter_oembed\service\oembed;
 use filter_oembed\provider\provider;
 
 /**
  * Upgrades the OEmbed filter.
  *
- * @param $oldversion Version to be upgraded from.
+ * @param int $oldversion Version to be upgraded from.
  * @return bool Success.
  */
 function xmldb_filter_oembed_upgrade($oldversion) {

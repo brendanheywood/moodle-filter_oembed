@@ -23,15 +23,19 @@
  * @copyright 2016 The POET Group
  */
 
+namespace filter_oembed;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/filter/oembed/tests/testable_oembed.php');
 
 /**
+ * Unit tests for the filter_oembed.
+ *
  * @group filter_oembed
  */
-class filter_oembed_service_testcase extends advanced_testcase {
+class filter_oembed_service_test extends \advanced_testcase {
 
     /**
      * Make sure providers array is correct.
@@ -58,6 +62,7 @@ class filter_oembed_service_testcase extends advanced_testcase {
 
     /**
      * Test instance.
+     * @covers \filter_oembed\classes\service\oembed\get_instance
      */
     public function test_instance() {
         $this->resetAfterTest(true);
@@ -66,6 +71,10 @@ class filter_oembed_service_testcase extends advanced_testcase {
         $this->assertNotEmpty($oembed);
     }
 
+    /**
+     * Test set_providers
+     * @covers \filter_oembed\classes\service\oembed\set_providers
+     */
     public function test_set_providers() {
         $this->resetAfterTest(true);
         $this->setAdminUser();
@@ -78,6 +87,7 @@ class filter_oembed_service_testcase extends advanced_testcase {
 
     /**
      * Test providers.
+     * @covers \filter_oembed\classes\service\oembed\get_instance
      */
     public function test_providers() {
         $this->resetAfterTest(true);
@@ -90,8 +100,12 @@ class filter_oembed_service_testcase extends advanced_testcase {
     /**
      * Test html.
      * TODO - have a local oembed service with test fixtures for performing test.
+     * @covers \filter_oembed\classes\service\oembed\html_output
      */
     public function test_embed_html() {
+        if (!PHPUNIT_LONGTEST) {
+            $this->markTestSkipped('Turn on PHPUNIT_LONGTEST to perform test calling external urls.');
+        }
         $this->resetAfterTest(true);
         set_config('lazyload', 0, 'filter_oembed');
         $this->setAdminUser();
@@ -105,23 +119,28 @@ class filter_oembed_service_testcase extends advanced_testcase {
     /**
      * Test lazy load html.
      * TODO - have a local oembed service with test fixtures for performing test.
+     * @covers \filter_oembed\classes\service\oembed\get_instance
      */
     public function test_preloader_html() {
+        if (!PHPUNIT_LONGTEST) {
+            $this->markTestSkipped('Turn on PHPUNIT_LONGTEST to perform test calling external urls.');
+        }
         $this->resetAfterTest(true);
         set_config('lazyload', 1, 'filter_oembed');
         $this->setAdminUser();
         $oembed = testable_oembed::get_instance();
         $text = $oembed->html_output('https://youtu.be/abuQk-6M5R4');
         $this->assertStringContainsString('<div class="oembed-card-container oembed-responsive">', $text);
-        $this->assertMatchesRegularExpression('/<div class="oembed-card oembed-processed" style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
-            'data-aspect-ratio = "(?:.*)"(?:.*)>/is', $text);
+        $this->assertMatchesRegularExpression('/<div class="oembed-card oembed-processed"'.
+            ' style="(?:.*)" data-embed="(?:.*)"(?:.*)' .
+            ' data-aspect-ratio = "(?:.*)"(?:.*)>/is', $text);
         $this->assertMatchesRegularExpression('/<div class="oembed-card-title">(?:.*)<\/div>/', $text);
         $this->assertStringContainsString('<button class="btn btn-link oembed-card-play" aria-label="Play"></button>', $text);
-
     }
 
     /**
      * Test download providers.
+     * @covers \filter_oembed\classes\service\oembed\download_providers
      */
     public function test_download_providers() {
         $this->resetAfterTest(true);
@@ -131,6 +150,7 @@ class filter_oembed_service_testcase extends advanced_testcase {
 
     /**
      * Test get local providers.
+     * @covers \filter_oembed\classes\service\oembed\get_local_providers
      */
     public function test_get_local_providers() {
         $this->resetAfterTest(true);
@@ -140,6 +160,7 @@ class filter_oembed_service_testcase extends advanced_testcase {
 
     /**
      * Test get plugin providers.
+     * @covers \filter_oembed\classes\service\oembed\get_plugin_providers
      */
     public function test_get_plugin_providers() {
         $this->resetAfterTest(true);
@@ -149,6 +170,7 @@ class filter_oembed_service_testcase extends advanced_testcase {
 
     /**
      * Test match_provider_names.
+     * @covers \filter_oembed\classes\service\oembed\match_provider_names
      */
     public function test_match_provider_names() {
         $this->resetAfterTest(true);
@@ -192,6 +214,7 @@ class filter_oembed_service_testcase extends advanced_testcase {
 
     /**
      * Test the "__get" magic method.
+     * @covers \filter_oembed\classes\service\oembed\__get
      */
     public function test_get() {
         $this->resetAfterTest(true);
@@ -214,16 +237,18 @@ class filter_oembed_service_testcase extends advanced_testcase {
         try {
             $noaccess = $oembed->noaccess;
             $this->assertTrue(false);
-        } catch (coding_exception $e) {
+        } catch (\coding_exception $e) {
             $expectedmessage = 'Coding error detected, it must be fixed by a programmer: ' .
-                               'noaccess is not a publicly accessible property of testable_oembed';
+                               'noaccess is not a publicly accessible property of filter_oembed\testable_oembed';
             $this->assertEquals($expectedmessage, $e->getMessage());
         }
     }
 
     /**
      * Test enable and disable provider functions.
-     * Tests: enable_provider, disable_provider, set_provider_enable_value.
+     * @covers \filter_oembed\classes\service\oembed\enable_provider
+     * @covers \filter_oembed\classes\service\oembed\disable_provider
+     * @covers \filter_oembed\classes\service\oembed\set_provider_enable_value
      */
     public function test_enable_disable_provider() {
         $this->resetAfterTest(true);

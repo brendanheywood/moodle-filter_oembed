@@ -40,3 +40,8 @@ Icon
 # Grunt stuff
 .sass-cache
 node_modules
+
+# phpDocumentor
+phpdoc
+tools
+.phive
