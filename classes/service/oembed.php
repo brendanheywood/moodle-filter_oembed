@@ -147,8 +147,12 @@ class oembed {
 
                 // If we have a consumer request, we're done searching. Try for a response.
                 $jsonret = $provider->oembed_response($requesturl);
-                if (!$jsonret) {
+
+                if (!$jsonret or !array_key_exists('html', $jsonret)) {
                     $output = '';
+                    if (array_key_exists('status', $jsonret)) {
+                        debugging("Error getting oembed URL $requesturl [".implode(" -- ", $jsonret)."]");
+                    }
                 } else if ($lazyload) {
                     $output = $this->oembed_getpreloadhtml($jsonret, $params);
                 } else {

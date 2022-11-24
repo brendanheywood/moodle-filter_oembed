@@ -28,6 +28,9 @@ namespace filter_oembed\provider;
 
 /**
  * oEmbed provider implementation for Poll Everywhere
+ *
+ *  As of 2022/11/24, Poll Everywhere doesn't seems to provide an oembed feature anymore :/
+ *  Test https://www.polleverywhere.com/services/oembed => Error 404
  */
 class pollev extends provider {
 

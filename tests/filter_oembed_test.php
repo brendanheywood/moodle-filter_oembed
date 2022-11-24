@@ -127,10 +127,8 @@ class filter_oembed_test extends \advanced_testcase {
         $tedlink = '<p><a href="https://ted.com/talks/aj_jacobs_how_healthy_living_nearly_killed_me">Ted</a></p>';
         $slidesharelink = '<p><a href="https://www.slideshare.net/timbrown/ideo-values-slideshare1">slideshare</a></p>';
         $issuulink = '<p><a href="https://issuu.com/thinkuni/docs/think_issue12">issuu</a></p>';
-        $polleverywherelink = '<p><a href="https://www.polleverywhere.com/multiple_choice_polls/AyCp2jkJ2HqYKXc/web">';
-        $polleverywherelink .= '$popolleverywhere</a></p>';
 
-        $filterinput = $soundcloudlink.$youtubelink.$vimeolink.$tedlink.$slidesharelink.$issuulink.$polleverywherelink;
+        $filterinput = $soundcloudlink.$youtubelink.$vimeolink.$tedlink.$slidesharelink.$issuulink;
 
         $filteroutput = $this->filter->filter($filterinput);
 
@@ -147,11 +145,6 @@ class filter_oembed_test extends \advanced_testcase {
 
         $tedoutput = '/.*<a href="https:\/\/ted\.com\/talks\/aj_jacobs_how_healthy_living_nearly_killed_me".*/';
         $this->assertMatchesRegularExpression($tedoutput, $filteroutput, 'Ted filter fails');
-
-        $polleverywhereoutput = '/.*<script src="https:\/\/www\.polleverywhere\.com\/'.
-                                'multiple_choice_polls\/AyCp2jkJ2HqYKXc\/web\.js'.
-                                '\?results_count_format=percent"><\/script>.*/';
-        $this->assertMatchesRegularExpression($polleverywhereoutput, $filteroutput, 'Poll everywhare filter fails');
 
         $slideshareoutput = '/.*<iframe .*src="https:\/\/www\.slideshare\.net\/slideshow\/embed_code\/key\/ywBrCQRAE5DZrD".*/';
         $this->assertMatchesRegularExpression($slideshareoutput, $filteroutput, 'Slideshare filter fails');
