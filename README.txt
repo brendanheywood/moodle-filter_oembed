@@ -1,20 +1,24 @@
-Description:
+# Description
+
 This is a text filter for Moodle that converts urls from many different media sites into embeded content.
 Embed code is retrieved from the original site so should work even if the site changes embed format.
 
-Installation:
+# Installation
+
 Download the source files. (zip file is available under download section)
 Unzip the package
 Copy the "oembed" folder to moodle/filter on the Moodle server.
 Login as an admin on the Moodle site and install the filter.
 
-Upgrading from earlier versions:
+# Upgrading from earlier versions
+
 Upgrade per normal procedures. Your settings from earlier plugins will be preserved.
 NOTE - Embed providers may change the text that identifies them. It is possible that media embedded previously on your site no
 longer meets the provider text definitions, and as such, may not show up as embedded media. Check the provider definition to see
 if the media link needs to change.
 
-To use:
+# To use
+
 Under Plugins > Filters > Oembed Filter / Settings, you can choose:
   - The type of tag to identify the embedded media.
   - To delay the media loading or load it immediately.
