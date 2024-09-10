@@ -75,7 +75,7 @@ class filter_oembed extends moodle_text_filter {
             $search = '/\<a\s[^\>]*href="(.*?)"(?:.*?)>(?:.*?)\<\/a\>/is';
         }
 
-        $filtered = preg_replace_callback($search, 'self::find_oembeds_callback', $filtered);
+        $filtered = preg_replace_callback($search, [self::class, 'find_oembeds_callback'], $filtered);
         if (empty($filtered)) {
             // If $filtered is emtpy return original $text.
             return $text;
