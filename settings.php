@@ -31,24 +31,40 @@ require_once($CFG->libdir.'/formslib.php');
 
 use filter_oembed\service\oembed;
 
-$ADMIN->add('filtersettings', new admin_category('filteroembedfolder', get_string('filtername', 'filter_oembed')));
-$settings = new admin_settingpage($section, get_string('settings'));
+$ADMIN->add('filtersettings', new admin_category('filteroembedfolder', new lang_string('filtername', 'filter_oembed')));
+$settings = new admin_settingpage($section, new lang_string('settings'));
 
 if ($ADMIN->fulltree) {
     $targettags = [
-        'a' => get_string('atag', 'filter_oembed'),
-        'div' => get_string('divtag', 'filter_oembed')
+        'a' => new lang_string('atag', 'filter_oembed'),
+        'div' => new lang_string('divtag', 'filter_oembed')
     ];
 
     $config = get_config('filter_oembed');
 
+    $item = new admin_setting_configtextarea(
+        'filter_oembed/extra_mappings',
+        get_string('extramappings', 'filter_oembed'),
+        get_string('extramappingsdescription', 'filter_oembed'),
+        '',
+        PARAM_RAW
+    );
+    $settings->add($item);
+
     $item = new admin_setting_configselect(
         'filter_oembed/targettag',
-        get_string('targettag', 'filter_oembed'),
-        get_string('targettag_desc', 'filter_oembed'),
+        new lang_string('targettag', 'filter_oembed'),
+        new lang_string('targettag_desc', 'filter_oembed'),
         'atag',
         ['atag' => 'atag', 'divtag' => 'divtag']
     );
+    $settings->add($item);
+
+    $retrylist = array('0' => new lang_string('none'), '1' => new lang_string('once', 'filter_oembed'),
+        '2' => new lang_string('times', 'filter_oembed', '2'),
+        '3' => new lang_string('times', 'filter_oembed', '3'));
+    $item = new admin_setting_configselect('filter_oembed/retrylimit',
+        new lang_string('retrylimit', 'filter_oembed'), '', '1', $retrylist);
     $settings->add($item);
 
     $item = new admin_setting_configcheckbox('filter_oembed/lazyload', new lang_string('lazyload', 'filter_oembed'), '', 1);
@@ -58,6 +74,6 @@ if ($ADMIN->fulltree) {
 $ADMIN->add('filteroembedfolder', $settings);
 
 $ADMIN->add('filteroembedfolder', new admin_externalpage('filter_oembed_providers',
-    get_string('manageproviders', 'filter_oembed'), new moodle_url('/filter/oembed/manageproviders.php')));
+    new lang_string('manageproviders', 'filter_oembed'), new moodle_url('/filter/oembed/manageproviders.php')));
 
 $settings = null;
