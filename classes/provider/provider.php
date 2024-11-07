@@ -162,8 +162,11 @@ class provider {
                     if (preg_match($regex, $text)) {
                         // If {format} is in the URL, replace it with the actual format.
                         // At the moment, we're only supporting JSON, so this must be JSON.
-                        $requesturl = str_replace('{format}', 'json', $endpoint->url) .
-                            '?url=' . urlencode($text) . '&format=json';
+                        $requesturl = str_replace('{format}', 'json', $endpoint->url);
+                        $requesturl = (new \moodle_url($requesturl, [
+                            'url' => $text,
+                            'format' => 'json',
+                        ]))->out(false);
                         break 2; // Done, break out of all loops.
                     }
                 } catch (\Exception $e) {
