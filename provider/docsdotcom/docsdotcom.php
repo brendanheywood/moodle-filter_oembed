@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * oEmbed provider implementation for Docs.com
+ *
  * @package filter_oembed
  * @author James McQuillan <james.mcquillan@remote-learner.net>
  * @author Mike Churchward <mike.churchward@poetgroup.org>
@@ -24,8 +26,6 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * oEmbed provider implementation for Docs.com
  */
@@ -33,7 +33,7 @@ class docsdotcom extends provider {
 
     /**
      * Constructor.
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param string $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if ($data === null) {
@@ -43,9 +43,9 @@ class docsdotcom extends provider {
                 'endpoints' => [
                     ['schemes' => ['https://docs.com/*', 'https://www.docs.com/*'],
                      'url' => 'https:\/\/docs.com\/api\/oembed',
-                     'formats' => ['json']
-                    ]
-                ]
+                     'formats' => ['json'],
+                    ],
+                ],
             ];
         }
         parent::__construct($data);

@@ -37,7 +37,7 @@ $settings = new admin_settingpage($section, get_string('settings'));
 if ($ADMIN->fulltree) {
     $targettags = [
         'a' => get_string('atag', 'filter_oembed'),
-        'div' => get_string('divtag', 'filter_oembed')
+        'div' => get_string('divtag', 'filter_oembed'),
     ];
 
     $config = get_config('filter_oembed');

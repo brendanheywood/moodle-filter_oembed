@@ -25,23 +25,29 @@ require_once(__DIR__ . '/../../../../lib/externallib.php');
 
 /**
  * Web service for managing provider visibility.
+ *
+ * @package   filter_oembed
  * @author    Guy Thomas
  * @copyright Copyright (c) 2016 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class ws_provider_manage extends \external_api {
     /**
+     * Returns description of method parameters.
+     *
      * @return \external_function_parameters
      */
     public static function service_parameters() {
         $parameters = [
             'pid' => new \external_value(PARAM_INT, 'Provider id', VALUE_REQUIRED),
-            'action' => new \external_value(PARAM_ALPHA, 'Action: enable / disable / reload / delete', VALUE_REQUIRED)
+            'action' => new \external_value(PARAM_ALPHA, 'Action: enable / disable / reload / delete', VALUE_REQUIRED),
         ];
         return new \external_function_parameters($parameters);
     }
 
     /**
+     * Returns description of method result value.
+     *
      * @return \external_single_structure
      */
     public static function service_returns() {
@@ -51,13 +57,15 @@ class ws_provider_manage extends \external_api {
                 util::define_class_for_webservice('filter_oembed\output\providermodel'),
                 'Provider renderable',
                 VALUE_OPTIONAL
-            )
+            ),
         ];
 
         return new \external_single_structure($keys, 'provider');
     }
 
     /**
+     * Implement the web service.
+     *
      * @param int $pid
      * @param string $action
      * @return array
@@ -76,7 +84,7 @@ class ws_provider_manage extends \external_api {
         if ($action === 'delete') {
             $oembed->delete_provider($pid);
             return [
-                'visible' => 0
+                'visible' => 0,
             ];
         } else {
             $providerrow = $oembed->get_provider_row($pid);
@@ -87,7 +95,7 @@ class ws_provider_manage extends \external_api {
             }
             return [
                 'visible' => $visible,
-                'providermodel' => $providermodel
+                'providermodel' => $providermodel,
             ];
         }
 

@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Update oEmbed providers task
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -23,10 +25,11 @@
 
 namespace filter_oembed\task;
 
-defined('MOODLE_INTERNAL') || die();
-
 use filter_oembed\service\oembed;
 
+/**
+ * Update oEmbed providers class
+ */
 class update_providers extends \core\task\scheduled_task {
 
     /**
