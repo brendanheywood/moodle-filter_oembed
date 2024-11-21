@@ -184,9 +184,39 @@ class provider {
      * @param string $url The consumer request URL.
      * @return array JSON decoded array.
      */
-    public function oembed_response($url) {
-        $ret = download_file_content($url, null, null, true, 300, 20, false, null, false);
-        return json_decode($ret->results, true);
+    public function oembed_response($url, $retryno = 0) {
+        static $cache;
+
+        if (!isset($cache)) {
+            $cache = \cache::make('filter_oembed', 'embeddata');
+        }
+
+        if ($ret = $cache->get(md5($url))) {
+            return json_decode($ret, true);
+        }
+
+        $curl = new \curl();
+        $ret = $curl->get($url);
+
+        // Check if curl call fails.
+        if ($curl->errno == CURLE_OK) {
+            $cache->set(md5($url), $ret);
+            $result = json_decode($ret, true);
+            return $result;
+        }
+
+        $retrylimit = get_config('filter_oembed', 'retrylimit');
+        // Check if error is due to network connection.
+        if (!in_array($curl->errno, [6, 7, 28])) {
+            return null;
+        }
+        // Try curl call up to $retrylimit times.
+        usleep(50000);
+        $retryno = (!is_int($retryno)) ? 0 : $retryno + 1;
+        if ($retryno >= $retrylimit) {
+            return null;
+        }
+        return $this->oembed_response($url, $retryno);
     }
 
     /**
@@ -227,6 +257,7 @@ class provider {
                     $find = ['.', '*'];
                     $replace = ['\.', '.*?'];
                     $url = str_replace($find, $replace, $url);
+                    $url = str_replace('.*??', '.*?\?', $url);
                     $regexarr[] = '(' . $url . ')';
                 }
 

@@ -68,7 +68,7 @@ class filter_oembed extends moodle_text_filter {
             return $text;
         }
 
-        $filtered = $text; // We need to return the original value if regex fails!
+        $filtered = $this->embed_extra_mappings($text); // We need to return the original value if regex fails!
         if ($targettag == 'divtag') {
             $search = '/\<div\s[^\>]*data-oembed-href="(.*?)"(.*?)>(.*?)\<\/div\>/';
         } else { // Using 'atag'.
@@ -82,6 +82,35 @@ class filter_oembed extends moodle_text_filter {
         } else {
             return $filtered;
         }
+    }
+
+    private function embed_extra_mappings($html) {
+        $extra = get_config('filter_oembed', 'extra_mappings');
+        if (empty($extra)) {
+            return $html;
+        }
+
+        $mappings = explode("\n", trim($extra));
+        foreach ($mappings as $mapping) {
+            $mapping = trim($mapping);
+            $params = explode('=>', $mapping);
+            if (count($params) != 2) {
+                if ($params != '') { // Ignore empty lines.
+                    debugging('Invalid extra mapping: '.$mapping);
+                }
+                continue;
+            }
+
+            $html = $this->embed_extra_mapping($html, trim($params[0]), trim($params[1]));
+        }
+
+        return $html;
+    }
+
+    private function embed_extra_mapping($html, $url, $endpoint) {
+        $search = '#<a\s[^>]*href="('.$url.')"(.*?)>(.*?)</a>#is'; // URL to Link filter will create <a> tags.
+        $html = preg_replace_callback($search, 'self::find_oembeds_callback', $html);
+        return $html;
     }
 
     /**
