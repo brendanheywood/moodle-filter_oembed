@@ -22,8 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 use filter_oembed\service\oembed;
 
 /**
@@ -45,13 +43,16 @@ class testable_oembed extends oembed {
         /** @var $instance oembed */
         static $instance = [];
         if (!isset($instance[$providerstate])) {
-            $instance[$providerstate] = new testable_oembed($providerstate);
+            $instance[$providerstate] = new \testable_oembed($providerstate);
         }
         return $instance[$providerstate];
     }
 
     /**
      * Calls the protected set_providers function.
+     *
+     * @param string $state The state to set the providers to.
+     * @return null
      */
     public function protected_set_providers($state = 'enabled') {
         return self::set_providers($state);
@@ -80,6 +81,10 @@ class testable_oembed extends oembed {
 
     /**
      * Calls the protected match_provider_names function.
+     *
+     * @param array $providerarray The array of providers.
+     * @param string $provider The provider name to match.
+     * @return false|object
      */
     public static function protected_match_provider_names($providerarray, $provider) {
         return self::match_provider_names($providerarray, $provider);
@@ -94,6 +99,9 @@ class testable_oembed extends oembed {
 
     /**
      * Calls the protected get_all_provider_data function.
+     *
+     * @param string $fields the fields to return.
+     * @return array
      */
     public static function protected_get_all_provider_data($fields = '*') {
         return self::get_all_provider_data($fields);

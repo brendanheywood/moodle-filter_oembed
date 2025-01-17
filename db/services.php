@@ -16,6 +16,8 @@
 
 /**
  * Services
+ *
+ * @package   filter_oembed
  * @author    Guy Thomas
  * @copyright Copyright (c) 2016 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -30,7 +32,7 @@ $functions = [
         'description'   => 'Manage provider visibility / reload',
         'type'          => 'write',
         'ajax'          => true,
-        'loginrequired' => true
+        'loginrequired' => true,
     ],
     'filter_oembed_providers' => [
         'classname'     => 'filter_oembed\\webservice\\ws_providers',
@@ -38,7 +40,7 @@ $functions = [
         'description'   => 'Array of providers',
         'type'          => 'read',
         'ajax'          => true,
-        'loginrequired' => true
-    ]
+        'loginrequired' => true,
+    ],
 ];
 

@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle-oembed-Filter.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace filter_oembed;
-
 /**
  * Filter for component 'filter_oembed'
  *
@@ -29,6 +27,8 @@ namespace filter_oembed;
  * @author Guy Thomas <brudinie@googlemail.com>
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  */
+
+namespace filter_oembed;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -44,15 +44,16 @@ require_once($CFG->libdir.'/filelib.php');
  */
 class text_filter extends \moodle_text_filter {
 
+
     /**
      * content gets filtered, links either wrapped in an <a> tag or in a <div> tag with class="oembed"
      * will be replaced by embeded content
      *
-     * @param $text HTML to be processed.
-     * @param $options
+     * @param string $text HTML to be processed.
+     * @param array $options The options for the filter.
      * @return string String containing processed HTML.
      */
-    public function filter($text, array $options = array()) {
+    public function filter($text, array $options = []) {
         global $PAGE;
 
         static $initialised = false;
@@ -89,7 +90,7 @@ class text_filter extends \moodle_text_filter {
     /**
      * Callback function to be used by the main filter
      *
-     * @param $match array An array of matched groups, where [1] is the URL matched.
+     * @param array $match An array of matched groups, where [1] is the URL matched.
      *
      */
     private static function find_oembeds_callback($match) {

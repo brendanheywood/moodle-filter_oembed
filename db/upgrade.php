@@ -25,16 +25,19 @@
  * Soundcloud (Troy Williams)
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 use filter_oembed\service\oembed;
 use filter_oembed\provider\provider;
 
 /**
  * Upgrades the OEmbed filter.
  *
- * @param $oldversion Version to be upgraded from.
+ * @param string $oldversion Version to be upgraded from.
  * @return bool Success.
+ * @throws ddl_exception
+ * @throws dml_exception
+ * @throws downgrade_exception
+ * @throws moodle_exception
+ * @throws upgrade_exception
  */
 function xmldb_filter_oembed_upgrade($oldversion) {
     global $DB;
@@ -57,10 +60,10 @@ function xmldb_filter_oembed_upgrade($oldversion) {
         $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, null, null, '0');
 
         // Adding keys to table filter_oembed.
-        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
 
         // Adding indexes to table filter_oembed.
-        $table->add_index('providernameix', XMLDB_INDEX_NOTUNIQUE, array('providername'));
+        $table->add_index('providernameix', XMLDB_INDEX_NOTUNIQUE, ['providername']);
 
         // Conditionally launch create table for filter_oembed.
         if (!$dbman->table_exists($table)) {
@@ -74,24 +77,24 @@ function xmldb_filter_oembed_upgrade($oldversion) {
         $config = get_config('filter_oembed');
         $providermap = [
             'youtube' => ['YouTube', 'http://www.youtube.com', ['http://www.youtube.com/*'],
-                          'http://www.youtube.com/oembed'],
+                          'http://www.youtube.com/oembed', ],
             'vimeo' => ['Vimeo', 'http://vimeo.com', ['http://vimeo.com/*'], 'https://vimeo.com/api/omebed.json'],
             'ted' => ['Ted', 'http://ted.com', ['http://ted.com/talks/*'], 'http://www.ted.com/talks/oembed.json'],
             'slideshare' => ['SlideShare', 'http://www.slideshare.net',
-                             ['http://www.slideshare.net/*'], 'http://www.slideshare.net/api/oembed/2'],
+                             ['http://www.slideshare.net/*'], 'http://www.slideshare.net/api/oembed/2', ],
             'officemix' => ['Office Mix', 'http://mix.office.com', ['http://mix.office.com/*'],
-                            'https://mix.office.com/oembed'],
+                            'https://mix.office.com/oembed', ],
             'issuu' => ['ISSUU', 'http://issuu.com', ['http://issuu.com/*'], 'http://issuu.com/oembed'],
             'soundcloud' => ['SoundCloud', 'http://soundcloud.com', ['http://soundcloud.com/*'],
-                             'https://soundcloud.com/oembed'],
+                             'https://soundcloud.com/oembed', ],
             'pollev' => ['Poll Everywhere', 'http://polleverywhere.com',
                          ['http://polleverywhere.com/polls/*', 'http://polleverywhere.com/multiple_choice_polls/*',
-                          'http://polleverywhere.com/free_text_polls/*'], 'http://www.polleverywhere.com/services/oembed'],
+                          'http://polleverywhere.com/free_text_polls/*', ], 'http://www.polleverywhere.com/services/oembed', ],
             'o365video' => ['Office365 Video', '', [''], ''],
             'sway' => ['Sway', 'https://www,sway.com', ['http://www.sway.com/*'], 'https://sway.com/api/v1.0/oembed'],
             'provider_docsdotcom_enabled' => ['Docs', '', [''], ''],
             'provider_powerbi_enabled' => ['Power BI', '', [''], ''],
-            'provider_officeforms_enabled' => ['Office Forms', '', [''], '']
+            'provider_officeforms_enabled' => ['Office Forms', '', [''], ''],
         ];
 
         foreach ($providermap as $oldprovider => $newprovider) {

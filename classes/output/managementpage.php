@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * The management page.
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,8 +28,9 @@ namespace filter_oembed\output;
 use filter_oembed\db\providerrow;
 use filter_oembed\provider\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * A class that represents the management page.
+ */
 class managementpage implements \renderable, \templatable {
 
     /**
@@ -41,7 +44,7 @@ class managementpage implements \renderable, \templatable {
      * Construct the renderable.
      * @param array $content The array of rows.
      */
-    public function __construct(array $content = array()) {
+    public function __construct(array $content = []) {
         if (!empty($content)) {
             foreach ($content as $row) {
                 $this->rows[] = $row;

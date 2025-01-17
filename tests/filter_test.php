@@ -26,16 +26,21 @@
  * @copyright Microsoft, Inc.
  */
 
+namespace filter_oembed;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/filter/oembed/filter.php');
 
 /**
+ * Unit tests for the filter_oembed.
+ *
  * @group filter_oembed
  */
-class filter_oembed_testcase extends advanced_testcase {
+final class filter_test extends \advanced_testcase {
 
+    /** @var object The filter plugin object to perform the tests on */
     protected $filter;
 
     /**
@@ -43,7 +48,7 @@ class filter_oembed_testcase extends advanced_testcase {
      */
     protected function setUp(): void {
         parent::setUp();
-        $this->filter = new filter_oembed(context_system::instance(), array());
+        $this->filter = new \filter_oembed(\context_system::instance(), []);
         // Ensure all tested providers are enabled.
         $oembed = \filter_oembed\service\oembed::get_instance('all');
         foreach ($oembed->providers as $pid => $provider) {
@@ -88,8 +93,10 @@ class filter_oembed_testcase extends advanced_testcase {
      * Performs unit tests for all services supported by the filter.
      *
      * Need to update this test to not contact external services.
+     *
+     * @covers \filter_oembed::filter()
      */
-    public function test_filter() {
+    public function test_filter(): void {
         $this->resetAfterTest(true);
         // This test is marked as skipped because, writing tests that rely
         // on talking to the Internet are a very, very bad idea.
