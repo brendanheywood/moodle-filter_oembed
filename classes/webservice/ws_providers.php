@@ -26,22 +26,28 @@ require_once(__DIR__ . '/../../../../lib/externallib.php');
 
 /**
  * Web service for getting array of provider models.
+ *
+ * @package   filter_oembed
  * @author    Guy Thomas
  * @copyright Copyright (c) 2016 Moodlerooms Inc. (http://www.moodlerooms.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class ws_providers extends \external_api {
     /**
+     * Returns description of method parameters.
+     *
      * @return \external_function_parameters
      */
     public static function service_parameters() {
         $parameters = [
-            'scope' => new \external_value(PARAM_ALPHA, 'Providers scope - all, enabled, disabled', VALUE_DEFAULT, 'all')
+            'scope' => new \external_value(PARAM_ALPHA, 'Providers scope - all, enabled, disabled', VALUE_DEFAULT, 'all'),
         ];
         return new \external_function_parameters($parameters);
     }
 
     /**
+     * Returns description of method result value.
+     *
      * @return \external_single_structure
      */
     public static function service_returns() {
@@ -66,7 +72,7 @@ class ws_providers extends \external_api {
                     'Provider renderable',
                     VALUE_REQUIRED
                 ), 'Array of local providers', VALUE_REQUIRED
-            )
+            ),
 
         ];
 
@@ -74,9 +80,11 @@ class ws_providers extends \external_api {
     }
 
     /**
-     * @param int $pid
-     * @param string $action
-     * @return array
+     * Implement the web service.
+     *
+     * @param string $scope The scope
+     * @return array|array[]|\stdClass
+     * @throws \dml_exception
      */
     public static function service($scope) {
         global $PAGE;

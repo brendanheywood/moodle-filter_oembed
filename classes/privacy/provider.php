@@ -24,8 +24,6 @@
 
 namespace filter_oembed\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * The mod_modname module does not store any data.
  *
@@ -37,7 +35,7 @@ class provider implements \core_privacy\local\metadata\null_provider {
      *
      * @return string
      */
-    public static function get_reason() : string {
+    public static function get_reason(): string {
         return 'privacy:metadata';
     }
 }

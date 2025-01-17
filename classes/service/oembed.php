@@ -251,7 +251,7 @@ class oembed {
         return $renderer->preload($this->oembed_gethtml($jsonarr, $params), $jsonarr);
     }
 
-    // ---- PROVIDER DATA MANAGEMENT SECTION ----
+    // PROVIDER DATA MANAGEMENT SECTION.
 
     /**
      * Function to update provider data in database with current provider sources.
@@ -557,7 +557,7 @@ class oembed {
         return $foundrecord;
     }
 
-    // ---- OTHER HELPER FUNCTIONS ----
+    // OTHER HELPER FUNCTIONS.
 
     /**
      * Magic method for getting properties.
@@ -577,7 +577,7 @@ class oembed {
     /**
      * Set the provider to "enabled".
      *
-     * @param int | provider The provider to enable.
+     * @param int $provider The provider to enable.
      */
     public function enable_provider($provider) {
         $this->set_provider_enable_value($provider, 1);
@@ -586,7 +586,7 @@ class oembed {
     /**
      * Set the provider to "disabled".
      *
-     * @param int | provider The provider to disable.
+     * @param int $provider The provider to disable.
      */
     public function disable_provider($provider) {
         $this->set_provider_enable_value($provider, 0);
@@ -595,7 +595,7 @@ class oembed {
     /**
      * Delete the local provider.
      *
-     * @param int | provider The provider to delete.
+     * @param int $provider The provider to delete.
      */
     public function delete_provider($provider) {
         global $DB;
@@ -662,8 +662,11 @@ class oembed {
     /**
      * Set the provider enabled field to the specified value.
      *
-     * @param int | object $provider The provider to modify.
+     * @param int|object $provider The provider to modify.
      * @param int $value Value to set.
+     * @return void
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     private function set_provider_enable_value($provider, $value) {
         global $DB;
@@ -710,7 +713,7 @@ class oembed {
         global $DB;
 
         // Get providers from database. This includes sub-plugins.
-        return $DB->get_records('filter_oembed', array('enabled' => 1));
+        return $DB->get_records('filter_oembed', ['enabled' => 1]);
     }
 
     /**
@@ -723,7 +726,7 @@ class oembed {
         global $DB;
 
         // Get providers from database. This includes sub-plugins.
-        return $DB->get_records('filter_oembed', array('enabled' => 0));
+        return $DB->get_records('filter_oembed', ['enabled' => 0]);
     }
 
     /**

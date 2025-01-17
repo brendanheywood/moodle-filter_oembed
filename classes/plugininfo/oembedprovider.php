@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * The provider info.
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -23,9 +25,15 @@
 
 namespace filter_oembed\plugininfo;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Filter oembed provider class
+ */
 class oembedprovider extends \core\plugininfo\base {
+    /**
+     * Whether uninstall is allowed.
+     *
+     * @return true
+     */
     public function is_uninstall_allowed() {
         return true;
     }

@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Base class for oembed providers and plugins. Plugins should extend this class.
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @author Erich M. Wappis <erich.wappis@uni-graz.at>
@@ -24,8 +26,6 @@
  */
 
 namespace filter_oembed\provider;
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Base class for oembed providers and plugins. Plugins should extend this class.
@@ -42,7 +42,7 @@ class provider {
     protected $id;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $enabled;
 
@@ -67,10 +67,16 @@ class provider {
     protected $source = '';
 
     /**
-     * @var Class constant descriptions.
+     * @var Class constant descriptio for local.
      */
     const PROVIDER_SOURCE_LOCAL = 'local::';
+    /**
+     * @var Class constant description for download.
+     */
     const PROVIDER_SOURCE_DOWNLOAD = 'download::';
+    /**
+     * @var Class constant description for plugin.
+     */
     const PROVIDER_SOURCE_PLUGIN = 'plugin::';
 
     /**
@@ -80,7 +86,7 @@ class provider {
      * include "_" in variable names, which violates the Moodle coding standard. Currently,
      * this is managed by the update processes to ensure compatibility.
      *
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param string $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if (is_object($data)) {

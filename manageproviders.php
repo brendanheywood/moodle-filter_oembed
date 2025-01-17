@@ -15,11 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Manage oEmbed providers.
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @copyright 2016 The POET Group
  */
+
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
 
@@ -68,7 +71,7 @@ $PAGE->set_heading($strmanage);
 $PAGE->requires->strings_for_js(
     [
         'deleteprovidertitle',
-        'deleteproviderconfirm'
+        'deleteproviderconfirm',
     ],
     'filter_oembed'
 );

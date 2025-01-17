@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * o365video provider implementation.
+ *
  * @package filter_oembed
  * @author Mike Churchward <mike.churchward@poetgroup.org>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -23,16 +25,14 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
- * oEmbed provider implementation for Docs.com
+ * oEmbed provider implementation for o365video
  */
 class o365video extends provider {
 
     /**
      * Constructor.
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param string $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if ($data === null) {
@@ -85,7 +85,7 @@ class o365video extends provider {
             return $matched[0];
         }
         $matched[3] = preg_replace("/&amp;/", "&", $matched[3]);
-        $values = array();
+        $values = [];
         parse_str($matched[3], $values);
         if (empty($values['chid']) || empty($values['vid'])) {
             return $matched[0];

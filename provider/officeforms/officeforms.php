@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Office Forms provider implementation.
+ *
  * @package filter_oembed
  * @author Aashay Zajriya<aashay@introp.net>
  * @author Mike Churchward <mike.churchward@poetgroup.org>
@@ -24,8 +26,6 @@
 
 namespace filter_oembed\provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * oEmbed provider implementation for Microsoft Forms
  */
@@ -33,7 +33,7 @@ class officeforms extends provider {
 
     /**
      * Constructor.
-     * @param $data JSON decoded array or a data object containing all provider data.
+     * @param array $data JSON decoded array or a data object containing all provider data.
      */
     public function __construct($data = null) {
         if ($data === null) {
@@ -42,11 +42,11 @@ class officeforms extends provider {
                 'providerurl' => 'https://forms.office.com/',
                 'endpoints' => [
                     ['schemes' => ['https://forms.office.com/Pages/ResponsePage.aspx?id=*',
-                                   'https://www.forms.office.com/Pages/ResponsePage.aspx?id=*'],
+                                   'https://www.forms.office.com/Pages/ResponsePage.aspx?id=*', ],
                      'url' => 'https://forms.office.com/Pages/ResponsePage.aspx?id=*&embed=true',
-                     'formats' => ['json']
-                    ]
-                ]
+                     'formats' => ['json'],
+                    ],
+                ],
             ];
         }
         parent::__construct($data);

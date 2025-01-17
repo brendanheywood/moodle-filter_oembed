@@ -16,6 +16,8 @@
 
 /**
  * Provider Row.
+ *
+ * @package   filter_oembed
  * @author    Guy Thomas <gthomas@moodlerooms.com>
  * @copyright Copyright (c) 2016 Blackboard Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -23,9 +25,10 @@
 
 namespace filter_oembed\db;
 
-defined('MOODLE_INTERNAL') || die();
-
-class providerrow extends abstract_dbrow{
+/**
+ * A class that represents a row in the provider table.
+ */
+class providerrow extends abstract_dbrow {
     /**
      * @var int id
      */

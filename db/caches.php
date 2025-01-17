@@ -24,10 +24,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$definitions = array(
-    'embeddata' => array(
+$definitions = [
+    'embeddata' => [
         'mode' => cache_store::MODE_APPLICATION,
         'ttl' => HOURSECS,
-    ),
-);
+    ],
+];
 
